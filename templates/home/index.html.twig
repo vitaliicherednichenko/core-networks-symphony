@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome — core-networks-symphony{% endblock %}
+
+{% block body %}
+<div style="font-family: sans-serif; max-width: 640px; margin: 4rem auto; line-height: 1.6;">
+    <h1>🎉 core-networks-symphony is running</h1>
+    <p>Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }} on PHP {{ constant('PHP_VERSION') }}.</p>
+    <ul>
+        <li>App: <a href="http://localhost:8080">http://localhost:8080</a></li>
+        <li>phpMyAdmin: <a href="http://localhost:8081">http://localhost:8081</a></li>
+    </ul>
+</div>
+{% endblock %}
