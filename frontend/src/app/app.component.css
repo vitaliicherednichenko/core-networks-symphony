@@ -1,0 +1,40 @@
+main {
+    font-family: system-ui, sans-serif;
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+}
+
+section {
+    margin-bottom: 2.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+}
+
+thead th {
+    background-color: #f3f4f6;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.error {
+    color: #b91c1c;
+    font-weight: 600;
+}
