@@ -1,3 +1,7 @@
+// Para entender cómo heredar características, crearemos un molde general llamado
+// Animal que solo guarda el nombre y tiene la acción común dormir(). Luego crearemos un molde específico llamado Perro.
+// Queremos que el perro tenga todo lo del animal automáticamente, pero además aprenda una acción exclusiva: ladrar()
+
 class Animal {
     nombre;
     dormir() {
@@ -14,5 +18,5 @@ class Perro extends Animal {
 const firulais = new Perro();
 firulais.nombre = "Firulais";
 
-firulais.dormir(); // Heredado de Animal
-firulais.ladrar(); // Propio de Perro
+firulais.dormir(); // Firulais está durmiendo... Zzz
+firulais.ladrar(); // Firulais dice: ¡Guau guau!

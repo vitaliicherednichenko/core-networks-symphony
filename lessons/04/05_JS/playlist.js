@@ -1,3 +1,8 @@
+// Crea una clase llamada Playlist. Tendrá un atributo llamado nombre y un atributo
+// llamado canciones, que será una lista vacía.
+// Añade una acción llamada agregarCancion(titulo) para meter textos en la lista, y una acción llamada
+// reproducirTodo() que use un bucle para mostrar todas las canciones de la lista una por una.
+
 class Playlist {
     nombre;
     canciones = [];
@@ -21,4 +26,7 @@ lista.agregarCancion("Bohemian Rhapsody");
 lista.agregarCancion("Stairway to Heaven");
 lista.agregarCancion("Hotel California");
 
-lista.reproducirTodo();
+lista.reproducirTodo(); // Reproduciendo la playlist: Mis favoritas
+                        // 1. Bohemian Rhapsody
+                        // 2. Stairway to Heaven
+                        // 3. Hotel California

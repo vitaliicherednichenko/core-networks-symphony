@@ -1,3 +1,8 @@
+// Para ahorrar código, crearemos un molde general llamado Vehiculo que guarda la marca
+// y tiene la acción común arrancar(). Luego, crearemos un molde específico llamado CocheElectrico.
+// Queremos que el coche eléctrico herede todo lo del vehículo automáticamente,
+// pero que añada una propiedad exclusiva llamada autonomia (por ejemplo, 400 km) y una acción exclusiva llamada cargar()
+
 class Vehiculo {
     marca;
     arrancar() {
@@ -16,5 +21,5 @@ class CocheElectrico extends Vehiculo {
 const tesla = new CocheElectrico();
 tesla.marca = "Tesla";
 
-tesla.arrancar(); // Heredado de Vehiculo
-tesla.cargar();   // Propio de CocheElectrico
+tesla.arrancar(); // Tesla está arrancando... ¡En marcha!
+tesla.cargar();   // Tesla cargando la batería. Autonomía: 400 km

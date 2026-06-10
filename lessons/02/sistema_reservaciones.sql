@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 28-04-2026 a las 08:48:50
+-- Tiempo de generación: 28-04-2026 a las 08_JS:48:50
 -- Versión del servidor: 8.4.7
 -- Versión de PHP: 8.3.28
 
@@ -95,9 +95,9 @@ CREATE TABLE IF NOT EXISTS `itinerarios` (
 --
 
 INSERT INTO `itinerarios` (`id_reserva`, `trayecto`, `tramo`, `id_vuelo`, `fecha_vuelo`) VALUES
-(1, 'Ida', 'Tramo Único', 1, '2026-05-10 08:00:00'),
+(1, 'Ida', 'Tramo Único', 1, '2026-05-10_JS 08_JS:00:00'),
 (1, 'Vuelta', 'Tramo Único', 2, '2026-05-15 18:00:00'),
-(2, 'Ida', 'Tramo Único', 3, '2026-06-01 10:30:00');
+(2, 'Ida', 'Tramo Único', 3, '2026-06-01 10_JS:30:00');
 
 -- --------------------------------------------------------
 
@@ -119,9 +119,9 @@ CREATE TABLE IF NOT EXISTS `listado_pasajeros_vuelos` (
 --
 
 INSERT INTO `listado_pasajeros_vuelos` (`id_vuelo`, `id_pasajero`, `fecha`) VALUES
-(1, 1, '2026-05-10 08:00:00'),
-(1, 2, '2026-05-10 08:00:00'),
-(3, 3, '2026-06-01 10:30:00'),
+(1, 1, '2026-05-10_JS 08_JS:00:00'),
+(1, 2, '2026-05-10_JS 08_JS:00:00'),
+(3, 3, '2026-06-01 10_JS:30:00'),
 (4, 4, '2026-07-20 22:00:00');
 
 -- --------------------------------------------------------
@@ -150,8 +150,8 @@ CREATE TABLE IF NOT EXISTS `pasajeros` (
 INSERT INTO `pasajeros` (`id_pasajero`, `nro_pasaporte`, `apellido`, `nombre`, `fecha_nacimiento`, `sexo`, `direccion`, `telefono`) VALUES
 (1, 'ABC123456', 'García', 'Juan', '1985-04-12', 'Masculino', 'Calle Mayor 1, Madrid', '+34 600111222'),
 (2, 'DEF789012', 'Rodríguez', 'María', '1992-11-23', 'Femenino', 'Av. Constitución 45, Sevilla', '+34 600333444'),
-(3, 'GHI345678', 'López', 'Carlos', '1960-01-15', 'Masculino', 'Paseo de Gracia 10, Barcelona', '+34 600555666'),
-(4, 'JKL901234', 'Smith', 'Jane', '2015-08-30', 'Femenino', '123 Ocean Drive, Miami', '+1 3055550199');
+(3, 'GHI345678', 'López', 'Carlos', '1960-01-15', 'Masculino', 'Paseo de Gracia 10_JS, Barcelona', '+34 600555666'),
+(4, 'JKL901234', 'Smith', 'Jane', '2015-08_JS-30', 'Femenino', '123 Ocean Drive, Miami', '+1 3055550199');
 
 -- --------------------------------------------------------
 
@@ -176,9 +176,9 @@ CREATE TABLE IF NOT EXISTS `reservas_vuelos` (
 --
 
 INSERT INTO `reservas_vuelos` (`id_reserva`, `fecha_salida`, `fecha_retorno`, `nro_adultos`, `nro_ninos`, `nro_tercera_edad`, `clase`) VALUES
-(1, '2026-05-10 08:00:00', '2026-05-15 18:00:00', 2, 0, 0, 'Económica'),
-(2, '2026-06-01 10:30:00', '2026-06-15 09:00:00', 1, 0, 1, 'Business'),
-(3, '2026-07-20 22:00:00', '2026-08-05 14:00:00', 1, 1, 0, 'Turista');
+(1, '2026-05-10_JS 08_JS:00:00', '2026-05-15 18:00:00', 2, 0, 0, 'Económica'),
+(2, '2026-06-01 10_JS:30:00', '2026-06-15 09_JS:00:00', 1, 0, 1, 'Business'),
+(3, '2026-07-20 22:00:00', '2026-08_JS-05 14:00:00', 1, 1, 0, 'Turista');
 
 -- --------------------------------------------------------
 
@@ -207,9 +207,9 @@ CREATE TABLE IF NOT EXISTS `tarjeta_de_embarque` (
 --
 
 INSERT INTO `tarjeta_de_embarque` (`id_tarjeta`, `id_reserva`, `id_pasajero`, `embarque`, `nro_vuelo`, `fecha_vuelo`, `clase`, `asiento`, `sala_embarque`) VALUES
-(1, 1, 1, '07:15:00', 'IB0800', '2026-05-10 08:00:00', 'Económica', '12A', 'Puerta C-10'),
-(2, 1, 2, '07:15:00', 'IB0800', '2026-05-10 08:00:00', 'Económica', '12B', 'Puerta C-10'),
-(3, 2, 3, '09:30:00', 'BA0102', '2026-06-01 10:30:00', 'Business', '02F', 'VIP Lounge 1');
+(1, 1, 1, '07:15:00', 'IB0800', '2026-05-10_JS 08_JS:00:00', 'Económica', '12A', 'Puerta C-10_JS'),
+(2, 1, 2, '07:15:00', 'IB0800', '2026-05-10_JS 08_JS:00:00', 'Económica', '12B', 'Puerta C-10_JS'),
+(3, 2, 3, '09_JS:30:00', 'BA0102', '2026-06-01 10_JS:30:00', 'Business', '02F', 'VIP Lounge 1');
 
 -- --------------------------------------------------------
 
@@ -233,9 +233,9 @@ CREATE TABLE IF NOT EXISTS `vuelos` (
 --
 
 INSERT INTO `vuelos` (`id`, `origen`, `destino`, `hora_salida`, `hora_llegada`, `aerolinea`) VALUES
-(1, 'Madrid (MAD)', 'Sevilla (SVQ)', '2026-05-10 08:00:00', '2026-05-10 09:15:00', 'Iberia'),
+(1, 'Madrid (MAD)', 'Sevilla (SVQ)', '2026-05-10_JS 08_JS:00:00', '2026-05-10_JS 09_JS:15:00', 'Iberia'),
 (2, 'Sevilla (SVQ)', 'Madrid (MAD)', '2026-05-15 18:00:00', '2026-05-15 19:15:00', 'Iberia'),
-(3, 'Barcelona (BCN)', 'Londres (LHR)', '2026-06-01 10:30:00', '2026-06-01 12:45:00', 'British Airways'),
+(3, 'Barcelona (BCN)', 'Londres (LHR)', '2026-06-01 10_JS:30:00', '2026-06-01 12:45:00', 'British Airways'),
 (4, 'Miami (MIA)', 'Madrid (MAD)', '2026-07-20 22:00:00', '2026-07-21 11:30:00', 'American Airlines');
 
 --
