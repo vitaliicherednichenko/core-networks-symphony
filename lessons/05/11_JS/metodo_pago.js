@@ -6,25 +6,13 @@
 // Escribe una función global fuera de las clases llamada ejecutarCobro(MetodoPago pasarela, total) que reciba
 // la pasarela abstracta e imprima el resultado del procesamiento, demostrando la flexibilidad de la ligadura dinámica
 
-class MetodoPago {
-    constructor() {
-        if (new.target === MetodoPago) {
-            throw new Error("MetodoPago es abstracta y no se puede instanciar directamente.");
-        }
-    }
-
-    procesarPago(importe) {
-        throw new Error("El método abstracto procesarPago() debe implementarse en la subclase.");
-    }
-}
-
-class PagoTarjeta extends MetodoPago {
+class PagoTarjeta {
     procesarPago(importe) {
         return "Pago de " + importe + "€ procesado con Tarjeta de Crédito";
     }
 }
 
-class PagoBizum extends MetodoPago {
+class PagoBizum {
     procesarPago(importe) {
         return "Pago de " + importe + "€ procesado mediante Bizum de forma instantánea";
     }
