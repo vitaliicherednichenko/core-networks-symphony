@@ -1,5 +1,19 @@
 <main>
+  <nav class="top-nav">
+    @if (usuario()) {
+      <a (click)="logout()">Cerrar sesión</a>
+    } @else {
+      <a routerLink="/login">Iniciar sesión</a>
+      <a routerLink="/signin">Registrarse</a>
+    }
+  </nav>
+
+  @if (isHome()) {
   <h1>{{ title }}</h1>
+
+  @if (usuario()) {
+    <p>Hola {{ usuario()!.nombre }}!!!</p>
+  }
 
   @if (error()) {
     <p class="error">{{ error() }}</p>
@@ -228,6 +242,29 @@
       </tbody>
     </table>
   </section>
-</main>
 
-<router-outlet />
+  <section>
+    <h2>Usuarios ({{ usuarios().length }})</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (u of usuarios(); track u.id) {
+          <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.nombre }}</td>
+            <td>{{ u.email }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+  }
+
+  <router-outlet />
+</main>

@@ -88,6 +88,23 @@ export interface TarjetaEmbarque {
   pasajero: string | null;
 }
 
+export interface NuevoUsuario {
+  nombre: string;
+  email: string;
+  password: string;
+}
+
+export interface Credenciales {
+  email: string;
+  password: string;
+}
+
+export interface Usuario {
+  id: number;
+  nombre: string;
+  email: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private http = inject(HttpClient);
@@ -95,6 +112,18 @@ export class ApiService {
 
   ping(): Observable<PingResponse> {
     return this.http.get<PingResponse>(`${this.baseUrl}/ping`);
+  }
+
+  usuarios(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.baseUrl}/usuarios`);
+  }
+
+  crearUsuario(usuario: NuevoUsuario): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.baseUrl}/usuarios`, usuario);
+  }
+
+  login(credenciales: Credenciales): Observable<Usuario> {
+    return this.http.post<Usuario>(`${this.baseUrl}/login`, credenciales);
   }
 
   vuelos(): Observable<Vuelo[]> {

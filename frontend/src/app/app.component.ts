@@ -1,5 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 import {
   ApiService,
@@ -11,18 +12,24 @@ import {
   Itinerario,
   ListadoPasajeroVuelo,
   TarjetaEmbarque,
+  Usuario,
 } from './api.service';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   private api = inject(ApiService);
+  private router = inject(Router);
+  private auth = inject(AuthService);
 
   title = 'Sistema de Reservaciones';
+  usuario = this.auth.usuario;
+  isHome = signal(this.router.url === '/');
   vuelos = signal<Vuelo[]>([]);
   pasajeros = signal<Pasajero[]>([]);
   reservas = signal<Reserva[]>([]);
@@ -31,9 +38,14 @@ export class AppComponent implements OnInit {
   itinerarios = signal<Itinerario[]>([]);
   listadoPasajerosVuelos = signal<ListadoPasajeroVuelo[]>([]);
   tarjetasEmbarque = signal<TarjetaEmbarque[]>([]);
+  usuarios = signal<Usuario[]>([]);
   error = signal<string | null>(null);
 
   ngOnInit(): void {
+    this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
+      this.isHome.set(this.router.url === '/');
+    });
+
     this.error.set(null);
     this.api.vuelos().subscribe({
       next: (res) => this.vuelos.set(res),
@@ -67,5 +79,13 @@ export class AppComponent implements OnInit {
       next: (res) => this.tarjetasEmbarque.set(res),
       error: (err) => this.error.set(err.message ?? 'Request failed'),
     });
+    this.api.usuarios().subscribe({
+      next: (res) => this.usuarios.set(res),
+      error: (err) => this.error.set(err.message ?? 'Request failed'),
+    });
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 }

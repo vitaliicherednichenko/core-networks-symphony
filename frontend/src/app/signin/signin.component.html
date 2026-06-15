@@ -1,0 +1,75 @@
+<nav class="top-nav">
+  <a routerLink="/">← Volver al inicio</a>
+  <a routerLink="/login">Iniciar sesión</a>
+</nav>
+
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Registrarse</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form class="login-form" [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="login-field" appearance="outline">
+        <mat-label>Correo electrónico</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          [errorStateMatcher]="matcher"
+          placeholder="vitalii@gmail.com"
+          autocomplete="email"
+        />
+        @if (signinForm.controls.email.hasError('required')) {
+          <mat-error>El correo es <strong>obligatorio</strong></mat-error>
+        } @else if (signinForm.controls.email.hasError('email')) {
+          <mat-error>Introduce un correo válido</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="login-field" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="nombre"
+          [errorStateMatcher]="matcher"
+          placeholder="Vitalii"
+          autocomplete="name"
+        />
+        @if (signinForm.controls.nombre.hasError('required')) {
+          <mat-error>El nombre es <strong>obligatorio</strong></mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="login-field" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input
+          type="password"
+          matInput
+          formControlName="password"
+          [errorStateMatcher]="matcher"
+          autocomplete="new-password"
+        />
+        @if (signinForm.controls.password.hasError('required')) {
+          <mat-error>La contraseña es <strong>obligatoria</strong></mat-error>
+        } @else if (signinForm.controls.password.hasError('minlength')) {
+          <mat-error>Debe tener al menos 6 caracteres</mat-error>
+        }
+      </mat-form-field>
+
+      @if (successMessage()) {
+        <p class="success">{{ successMessage() }}</p>
+      }
+      @if (errorMessage()) {
+        <p class="error">{{ errorMessage() }}</p>
+      }
+
+      <div class="login-actions">
+        <button mat-flat-button color="primary" type="submit" [disabled]="signinForm.invalid || submitting()">
+          {{ submitting() ? 'Guardando...' : 'Registrarse' }}
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

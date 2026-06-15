@@ -9,6 +9,22 @@ h1 {
     margin-bottom: 1.5rem;
 }
 
+.top-nav {
+    margin-bottom: 1rem;
+}
+
+.top-nav a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.top-nav a:hover {
+    text-decoration: underline;
+}
+
 section {
     margin-bottom: 2.5rem;
 }
