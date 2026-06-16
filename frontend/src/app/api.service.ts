@@ -99,10 +99,82 @@ export interface Credenciales {
   password: string;
 }
 
+export interface NuevoVuelo {
+  origen: string;
+  destino: string;
+  hora_salida: string;
+  hora_llegada: string;
+  aerolinea: string;
+}
+
+export interface NuevoPasajero {
+  nro_pasaporte: string;
+  apellido: string;
+  nombre: string;
+  fecha_nacimiento: string;
+  sexo: string;
+  direccion: string;
+  telefono: string;
+}
+
+export interface NuevaReserva {
+  fecha_salida: string;
+  fecha_retorno: string;
+  nro_adultos: number;
+  nro_ninos: number;
+  nro_tercera_edad: number;
+  clase: string;
+}
+
+export interface NuevoBoleto {
+  id_pasajero: number;
+  id_reserva: number;
+  clase: string;
+  precio: string;
+}
+
+export interface NuevoDetalleViajero {
+  id_reserva: number;
+  id_pasajero: number;
+}
+
+export interface NuevoItinerario {
+  id_reserva: number;
+  trayecto: string;
+  tramo: string;
+  id_vuelo: number | null;
+  fecha_vuelo: string;
+}
+
+export interface NuevoListadoPasajeroVuelo {
+  id_vuelo: number;
+  id_pasajero: number;
+  fecha: string;
+}
+
+export interface NuevaTarjetaEmbarque {
+  id_reserva: number;
+  id_pasajero: number;
+  embarque: string;
+  nro_vuelo: string;
+  fecha_vuelo: string;
+  clase: string;
+  asiento: string;
+  sala_embarque: string;
+}
+
+export interface ActualizarUsuario {
+  nombre: string;
+  email: string;
+  role: string;
+  password?: string;
+}
+
 export interface Usuario {
   id: number;
   nombre: string;
   email: string;
+  role: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -156,5 +228,113 @@ export class ApiService {
 
   tarjetasEmbarque(): Observable<TarjetaEmbarque[]> {
     return this.http.get<TarjetaEmbarque[]>(`${this.baseUrl}/tarjetas-embarque`);
+  }
+
+  crearVuelo(userId: number, vuelo: NuevoVuelo): Observable<Vuelo> {
+    return this.http.post<Vuelo>(`${this.baseUrl}/vuelos`, { userId, ...vuelo });
+  }
+
+  actualizarVuelo(id: number, userId: number, vuelo: NuevoVuelo): Observable<Vuelo> {
+    return this.http.put<Vuelo>(`${this.baseUrl}/vuelos/${id}`, { userId, ...vuelo });
+  }
+
+  eliminarVuelo(id: number, userId: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/vuelos/${id}`, { body: { userId } });
+  }
+
+  // Pasajeros CRUD
+  crearPasajero(userId: number, p: NuevoPasajero): Observable<Pasajero> {
+    return this.http.post<Pasajero>(`${this.baseUrl}/pasajeros`, { userId, ...p });
+  }
+
+  actualizarPasajero(id: number, userId: number, p: NuevoPasajero): Observable<Pasajero> {
+    return this.http.put<Pasajero>(`${this.baseUrl}/pasajeros/${id}`, { userId, ...p });
+  }
+
+  eliminarPasajero(id: number, userId: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/pasajeros/${id}`, { body: { userId } });
+  }
+
+  // Reservas CRUD
+  crearReserva(userId: number, r: NuevaReserva): Observable<Reserva> {
+    return this.http.post<Reserva>(`${this.baseUrl}/reservas`, { userId, ...r });
+  }
+
+  actualizarReserva(id: number, userId: number, r: NuevaReserva): Observable<Reserva> {
+    return this.http.put<Reserva>(`${this.baseUrl}/reservas/${id}`, { userId, ...r });
+  }
+
+  eliminarReserva(id: number, userId: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/reservas/${id}`, { body: { userId } });
+  }
+
+  // Boletos CRUD
+  crearBoleto(userId: number, b: NuevoBoleto): Observable<Boleto> {
+    return this.http.post<Boleto>(`${this.baseUrl}/boletos`, { userId, ...b });
+  }
+
+  actualizarBoleto(id: number, userId: number, b: NuevoBoleto): Observable<Boleto> {
+    return this.http.put<Boleto>(`${this.baseUrl}/boletos/${id}`, { userId, ...b });
+  }
+
+  eliminarBoleto(id: number, userId: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/boletos/${id}`, { body: { userId } });
+  }
+
+  // Detalles Viajeros CRUD
+  crearDetalleViajero(userId: number, d: NuevoDetalleViajero): Observable<DetalleViajero> {
+    return this.http.post<DetalleViajero>(`${this.baseUrl}/detalles-viajeros`, { userId, ...d });
+  }
+
+  eliminarDetalleViajero(userId: number, id_reserva: number, id_pasajero: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/detalles-viajeros`, { body: { userId, id_reserva, id_pasajero } });
+  }
+
+  // Itinerarios CRUD
+  crearItinerario(userId: number, it: NuevoItinerario): Observable<Itinerario> {
+    return this.http.post<Itinerario>(`${this.baseUrl}/itinerarios`, { userId, ...it });
+  }
+
+  actualizarItinerario(userId: number, it: NuevoItinerario): Observable<Itinerario> {
+    return this.http.put<Itinerario>(`${this.baseUrl}/itinerarios`, { userId, ...it });
+  }
+
+  eliminarItinerario(userId: number, id_reserva: number, trayecto: string, tramo: string): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/itinerarios`, { body: { userId, id_reserva, trayecto, tramo } });
+  }
+
+  // Listado Pasajeros Vuelos CRUD
+  crearListadoPasajeroVuelo(userId: number, l: NuevoListadoPasajeroVuelo): Observable<ListadoPasajeroVuelo> {
+    return this.http.post<ListadoPasajeroVuelo>(`${this.baseUrl}/listado-pasajeros-vuelos`, { userId, ...l });
+  }
+
+  actualizarListadoPasajeroVuelo(userId: number, l: NuevoListadoPasajeroVuelo): Observable<ListadoPasajeroVuelo> {
+    return this.http.put<ListadoPasajeroVuelo>(`${this.baseUrl}/listado-pasajeros-vuelos`, { userId, ...l });
+  }
+
+  eliminarListadoPasajeroVuelo(userId: number, id_vuelo: number, id_pasajero: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/listado-pasajeros-vuelos`, { body: { userId, id_vuelo, id_pasajero } });
+  }
+
+  // Tarjetas Embarque CRUD
+  crearTarjetaEmbarque(userId: number, t: NuevaTarjetaEmbarque): Observable<TarjetaEmbarque> {
+    return this.http.post<TarjetaEmbarque>(`${this.baseUrl}/tarjetas-embarque`, { userId, ...t });
+  }
+
+  actualizarTarjetaEmbarque(id: number, userId: number, t: NuevaTarjetaEmbarque): Observable<TarjetaEmbarque> {
+    return this.http.put<TarjetaEmbarque>(`${this.baseUrl}/tarjetas-embarque/${id}`, { userId, ...t });
+  }
+
+  eliminarTarjetaEmbarque(id: number, userId: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/tarjetas-embarque/${id}`, { body: { userId } });
+  }
+
+  // Usuarios CRUD (admin)
+  actualizarUsuario(id: number, userId: number, u: ActualizarUsuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.baseUrl}/usuarios/${id}`, { userId, ...u });
+  }
+
+  eliminarUsuario(id: number, userId: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/usuarios/${id}`, { body: { userId } });
   }
 }

@@ -1,0 +1,90 @@
+<nav class="page-nav">
+  <a routerLink="/">← Inicio</a>
+</nav>
+
+<h2>Tarjetas de Embarque ({{ tarjetas().length }})</h2>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (esAdmin()) {
+  <div class="crud-toolbar">
+    <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
+      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar tarjeta' }}
+    </button>
+  </div>
+
+  @if (mostrarFormulario) {
+    <form class="formulario" (ngSubmit)="agregar()">
+      <input [(ngModel)]="formulario.id_reserva"   name="id_reserva"   placeholder="ID Reserva"  type="number" min="1" required />
+      <input [(ngModel)]="formulario.id_pasajero"  name="id_pasajero"  placeholder="ID Pasajero" type="number" min="1" required />
+      <input [(ngModel)]="formulario.embarque"     name="embarque"     placeholder="Embarque"    required />
+      <input [(ngModel)]="formulario.nro_vuelo"    name="nro_vuelo"    placeholder="Nº Vuelo"    required />
+      <input [(ngModel)]="formulario.fecha_vuelo"  name="fecha_vuelo"  placeholder="Fecha vuelo (YYYY-MM-DD HH:MM:SS)" required />
+      <input [(ngModel)]="formulario.clase"        name="clase"        placeholder="Clase"       required />
+      <input [(ngModel)]="formulario.asiento"      name="asiento"      placeholder="Asiento"     required />
+      <input [(ngModel)]="formulario.sala_embarque" name="sala_embarque" placeholder="Sala"      required />
+      <button type="submit" class="btn-guardar">Guardar</button>
+    </form>
+  }
+}
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pasajero</th>
+      <th>ID Reserva</th>
+      <th>ID Pasajero</th>
+      <th>Nº vuelo</th>
+      <th>Fecha</th>
+      <th>Clase</th>
+      <th>Asiento</th>
+      <th>Embarque</th>
+      <th>Sala</th>
+      @if (esAdmin()) { <th>Acciones</th> }
+    </tr>
+  </thead>
+  <tbody>
+    @for (t of tarjetas(); track t.id_tarjeta) {
+      @if (editando?.id_tarjeta === t.id_tarjeta) {
+        <tr class="fila-edicion">
+          <td>{{ t.id_tarjeta }}</td>
+          <td>{{ t.pasajero }}</td>
+          <td><input [(ngModel)]="editForm.id_reserva"   name="e-ir-{{t.id_tarjeta}}" type="number" /></td>
+          <td><input [(ngModel)]="editForm.id_pasajero"  name="e-ip-{{t.id_tarjeta}}" type="number" /></td>
+          <td><input [(ngModel)]="editForm.nro_vuelo"    name="e-nv-{{t.id_tarjeta}}" /></td>
+          <td><input [(ngModel)]="editForm.fecha_vuelo"  name="e-fv-{{t.id_tarjeta}}" /></td>
+          <td><input [(ngModel)]="editForm.clase"        name="e-cl-{{t.id_tarjeta}}" /></td>
+          <td><input [(ngModel)]="editForm.asiento"      name="e-as-{{t.id_tarjeta}}" /></td>
+          <td><input [(ngModel)]="editForm.embarque"     name="e-em-{{t.id_tarjeta}}" /></td>
+          <td><input [(ngModel)]="editForm.sala_embarque" name="e-sa-{{t.id_tarjeta}}" /></td>
+          <td class="acciones">
+            <button class="btn-guardar" (click)="guardarEdicion()">✓</button>
+            <button class="btn-cancelar" (click)="cancelarEdicion()">✕</button>
+          </td>
+        </tr>
+      } @else {
+        <tr>
+          <td>{{ t.id_tarjeta }}</td>
+          <td>{{ t.pasajero }}</td>
+          <td>{{ t.id_reserva }}</td>
+          <td>{{ t.id_pasajero }}</td>
+          <td>{{ t.nro_vuelo }}</td>
+          <td>{{ t.fecha_vuelo }}</td>
+          <td>{{ t.clase }}</td>
+          <td>{{ t.asiento }}</td>
+          <td>{{ t.embarque }}</td>
+          <td>{{ t.sala_embarque }}</td>
+          @if (esAdmin()) {
+            <td class="acciones">
+              <button class="btn-editar" (click)="iniciarEdicion(t)">Editar</button>
+              <button class="btn-eliminar" (click)="eliminar(t.id_tarjeta)">Eliminar</button>
+            </td>
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>

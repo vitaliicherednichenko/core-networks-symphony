@@ -1,0 +1,74 @@
+<nav class="page-nav">
+  <a routerLink="/">← Inicio</a>
+</nav>
+
+<h2>Usuarios ({{ usuarios().length }})</h2>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (esAdmin()) {
+  <div class="crud-toolbar">
+    <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
+      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar usuario' }}
+    </button>
+  </div>
+
+  @if (mostrarFormulario) {
+    <form class="formulario" (ngSubmit)="agregar()">
+      <input [(ngModel)]="formulario.nombre"   name="nombre"   placeholder="Nombre"   required />
+      <input [(ngModel)]="formulario.email"    name="email"    placeholder="Email"    type="email" required />
+      <input [(ngModel)]="formulario.password" name="password" placeholder="Contraseña" type="password" required />
+      <button type="submit" class="btn-guardar">Guardar</button>
+    </form>
+  }
+}
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Rol</th>
+      @if (esAdmin()) { <th>Acciones</th> }
+    </tr>
+  </thead>
+  <tbody>
+    @for (u of usuarios(); track u.id) {
+      @if (editando?.id === u.id) {
+        <tr class="fila-edicion">
+          <td>{{ u.id }}</td>
+          <td><input [(ngModel)]="editForm.nombre"   name="e-no-{{u.id}}" /></td>
+          <td><input [(ngModel)]="editForm.email"    name="e-em-{{u.id}}" type="email" /></td>
+          <td>
+            <select [(ngModel)]="editForm.role" name="e-ro-{{u.id}}">
+              <option value="user">user</option>
+              <option value="admin">admin</option>
+            </select>
+          </td>
+          <td class="acciones">
+            <button class="btn-guardar" (click)="guardarEdicion()">✓</button>
+            <button class="btn-cancelar" (click)="cancelarEdicion()">✕</button>
+          </td>
+        </tr>
+      } @else {
+        <tr>
+          <td>{{ u.id }}</td>
+          <td>{{ u.nombre }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.role }}</td>
+          @if (esAdmin()) {
+            <td class="acciones">
+              <button class="btn-editar" (click)="iniciarEdicion(u)">Editar</button>
+              @if (u.id !== sesionId()) {
+                <button class="btn-eliminar" (click)="eliminar(u.id)">Eliminar</button>
+              }
+            </td>
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>

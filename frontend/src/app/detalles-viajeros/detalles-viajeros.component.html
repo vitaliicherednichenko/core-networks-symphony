@@ -1,0 +1,50 @@
+<nav class="page-nav">
+  <a routerLink="/">← Inicio</a>
+</nav>
+
+<h2>Detalles Viajeros ({{ detalles().length }})</h2>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (esAdmin()) {
+  <div class="crud-toolbar">
+    <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
+      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar detalle' }}
+    </button>
+  </div>
+
+  @if (mostrarFormulario) {
+    <form class="formulario" (ngSubmit)="agregar()">
+      <input [(ngModel)]="formulario.id_reserva"  name="id_reserva"  placeholder="ID Reserva"  type="number" min="1" required />
+      <input [(ngModel)]="formulario.id_pasajero" name="id_pasajero" placeholder="ID Pasajero" type="number" min="1" required />
+      <button type="submit" class="btn-guardar">Guardar</button>
+    </form>
+  }
+}
+
+<table>
+  <thead>
+    <tr>
+      <th>ID Reserva</th>
+      <th>ID Pasajero</th>
+      <th>Pasajero</th>
+      @if (esAdmin()) { <th>Acciones</th> }
+    </tr>
+  </thead>
+  <tbody>
+    @for (d of detalles(); track d.id_reserva + '-' + d.id_pasajero) {
+      <tr>
+        <td>{{ d.id_reserva }}</td>
+        <td>{{ d.id_pasajero }}</td>
+        <td>{{ d.pasajero }}</td>
+        @if (esAdmin()) {
+          <td class="acciones">
+            <button class="btn-eliminar" (click)="eliminar(d.id_reserva, d.id_pasajero)">Eliminar</button>
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

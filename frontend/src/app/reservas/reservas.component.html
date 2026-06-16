@@ -1,0 +1,79 @@
+<nav class="page-nav">
+  <a routerLink="/">← Inicio</a>
+</nav>
+
+<h2>Reservas ({{ reservas().length }})</h2>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (esAdmin()) {
+  <div class="crud-toolbar">
+    <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
+      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar reserva' }}
+    </button>
+  </div>
+
+  @if (mostrarFormulario) {
+    <form class="formulario" (ngSubmit)="agregar()">
+      <input [(ngModel)]="formulario.fecha_salida"    name="fecha_salida"    placeholder="Salida (YYYY-MM-DD HH:MM:SS)"  required />
+      <input [(ngModel)]="formulario.fecha_retorno"   name="fecha_retorno"   placeholder="Retorno (YYYY-MM-DD HH:MM:SS)" required />
+      <input [(ngModel)]="formulario.nro_adultos"     name="nro_adultos"     placeholder="Adultos"     type="number" min="0" required />
+      <input [(ngModel)]="formulario.nro_ninos"       name="nro_ninos"       placeholder="Niños"       type="number" min="0" required />
+      <input [(ngModel)]="formulario.nro_tercera_edad" name="nro_tercera_edad" placeholder="3ª edad"   type="number" min="0" required />
+      <input [(ngModel)]="formulario.clase"           name="clase"           placeholder="Clase"       required />
+      <button type="submit" class="btn-guardar">Guardar</button>
+    </form>
+  }
+}
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Salida</th>
+      <th>Retorno</th>
+      <th>Adultos</th>
+      <th>Niños</th>
+      <th>3ª edad</th>
+      <th>Clase</th>
+      @if (esAdmin()) { <th>Acciones</th> }
+    </tr>
+  </thead>
+  <tbody>
+    @for (r of reservas(); track r.id_reserva) {
+      @if (editando?.id_reserva === r.id_reserva) {
+        <tr class="fila-edicion">
+          <td>{{ r.id_reserva }}</td>
+          <td><input [(ngModel)]="editForm.fecha_salida"      name="e-fs-{{r.id_reserva}}" /></td>
+          <td><input [(ngModel)]="editForm.fecha_retorno"     name="e-fr-{{r.id_reserva}}" /></td>
+          <td><input [(ngModel)]="editForm.nro_adultos"       name="e-na-{{r.id_reserva}}" type="number" /></td>
+          <td><input [(ngModel)]="editForm.nro_ninos"         name="e-nn-{{r.id_reserva}}" type="number" /></td>
+          <td><input [(ngModel)]="editForm.nro_tercera_edad"  name="e-nt-{{r.id_reserva}}" type="number" /></td>
+          <td><input [(ngModel)]="editForm.clase"             name="e-cl-{{r.id_reserva}}" /></td>
+          <td class="acciones">
+            <button class="btn-guardar" (click)="guardarEdicion()">✓</button>
+            <button class="btn-cancelar" (click)="cancelarEdicion()">✕</button>
+          </td>
+        </tr>
+      } @else {
+        <tr>
+          <td>{{ r.id_reserva }}</td>
+          <td>{{ r.fecha_salida }}</td>
+          <td>{{ r.fecha_retorno }}</td>
+          <td>{{ r.nro_adultos }}</td>
+          <td>{{ r.nro_ninos }}</td>
+          <td>{{ r.nro_tercera_edad }}</td>
+          <td>{{ r.clase }}</td>
+          @if (esAdmin()) {
+            <td class="acciones">
+              <button class="btn-editar" (click)="iniciarEdicion(r)">Editar</button>
+              <button class="btn-eliminar" (click)="eliminar(r.id_reserva)">Eliminar</button>
+            </td>
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>

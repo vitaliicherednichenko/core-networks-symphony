@@ -1,0 +1,74 @@
+<nav class="page-nav">
+  <a routerLink="/">← Inicio</a>
+</nav>
+
+<h2>Boletos ({{ boletos().length }})</h2>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (esAdmin()) {
+  <div class="crud-toolbar">
+    <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
+      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar boleto' }}
+    </button>
+  </div>
+
+  @if (mostrarFormulario) {
+    <form class="formulario" (ngSubmit)="agregar()">
+      <input [(ngModel)]="formulario.id_pasajero" name="id_pasajero" placeholder="ID Pasajero" type="number" min="1" required />
+      <input [(ngModel)]="formulario.id_reserva"  name="id_reserva"  placeholder="ID Reserva"  type="number" min="1" required />
+      <input [(ngModel)]="formulario.clase"        name="clase"        placeholder="Clase"       required />
+      <input [(ngModel)]="formulario.precio"       name="precio"       placeholder="Precio"      required />
+      <button type="submit" class="btn-guardar">Guardar</button>
+    </form>
+  }
+}
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pasajero</th>
+      <th>ID Pasajero</th>
+      <th>ID Reserva</th>
+      <th>Clase</th>
+      <th>Precio</th>
+      @if (esAdmin()) { <th>Acciones</th> }
+    </tr>
+  </thead>
+  <tbody>
+    @for (b of boletos(); track b.id_boleto) {
+      @if (editando?.id_boleto === b.id_boleto) {
+        <tr class="fila-edicion">
+          <td>{{ b.id_boleto }}</td>
+          <td>{{ b.pasajero }}</td>
+          <td><input [(ngModel)]="editForm.id_pasajero" name="e-ip-{{b.id_boleto}}" type="number" /></td>
+          <td><input [(ngModel)]="editForm.id_reserva"  name="e-ir-{{b.id_boleto}}" type="number" /></td>
+          <td><input [(ngModel)]="editForm.clase"        name="e-cl-{{b.id_boleto}}" /></td>
+          <td><input [(ngModel)]="editForm.precio"       name="e-pr-{{b.id_boleto}}" /></td>
+          <td class="acciones">
+            <button class="btn-guardar" (click)="guardarEdicion()">✓</button>
+            <button class="btn-cancelar" (click)="cancelarEdicion()">✕</button>
+          </td>
+        </tr>
+      } @else {
+        <tr>
+          <td>{{ b.id_boleto }}</td>
+          <td>{{ b.pasajero }}</td>
+          <td>{{ b.id_pasajero }}</td>
+          <td>{{ b.id_reserva }}</td>
+          <td>{{ b.clase }}</td>
+          <td>{{ b.precio }}</td>
+          @if (esAdmin()) {
+            <td class="acciones">
+              <button class="btn-editar" (click)="iniciarEdicion(b)">Editar</button>
+              <button class="btn-eliminar" (click)="eliminar(b.id_boleto)">Eliminar</button>
+            </td>
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>

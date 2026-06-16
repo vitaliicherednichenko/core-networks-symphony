@@ -1,0 +1,78 @@
+<nav class="page-nav">
+  <a routerLink="/">← Inicio</a>
+</nav>
+
+<h2>Itinerarios ({{ itinerarios().length }})</h2>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}
+
+@if (esAdmin()) {
+  <div class="crud-toolbar">
+    <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
+      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar itinerario' }}
+    </button>
+  </div>
+
+  @if (mostrarFormulario) {
+    <form class="formulario" (ngSubmit)="agregar()">
+      <input [(ngModel)]="formulario.id_reserva"  name="id_reserva"  placeholder="ID Reserva"  type="number" min="1" required />
+      <input [(ngModel)]="formulario.trayecto"    name="trayecto"    placeholder="Trayecto"     required />
+      <input [(ngModel)]="formulario.tramo"       name="tramo"       placeholder="Tramo"        required />
+      <input [(ngModel)]="formulario.id_vuelo"    name="id_vuelo"    placeholder="ID Vuelo"     type="number" />
+      <input [(ngModel)]="formulario.fecha_vuelo" name="fecha_vuelo" placeholder="Fecha (YYYY-MM-DD HH:MM:SS)" required />
+      <button type="submit" class="btn-guardar">Guardar</button>
+    </form>
+  }
+}
+
+<table>
+  <thead>
+    <tr>
+      <th>Reserva</th>
+      <th>Trayecto</th>
+      <th>Tramo</th>
+      <th>Vuelo</th>
+      <th>Ruta</th>
+      <th>Aerolínea</th>
+      <th>Fecha</th>
+      @if (esAdmin()) { <th>Acciones</th> }
+    </tr>
+  </thead>
+  <tbody>
+    @for (i of itinerarios(); track i.id_reserva + '-' + i.trayecto + '-' + i.tramo) {
+      @if (editandoKey === i.id_reserva + '|' + i.trayecto + '|' + i.tramo) {
+        <tr class="fila-edicion">
+          <td>{{ i.id_reserva }}</td>
+          <td>{{ i.trayecto }}</td>
+          <td>{{ i.tramo }}</td>
+          <td><input [(ngModel)]="editForm.id_vuelo"    name="e-iv-{{i.id_reserva}}-{{i.trayecto}}" type="number" /></td>
+          <td>{{ i.origen }} → {{ i.destino }}</td>
+          <td>{{ i.aerolinea }}</td>
+          <td><input [(ngModel)]="editForm.fecha_vuelo" name="e-fv-{{i.id_reserva}}-{{i.trayecto}}" /></td>
+          <td class="acciones">
+            <button class="btn-guardar" (click)="guardarEdicion(i)">✓</button>
+            <button class="btn-cancelar" (click)="cancelarEdicion()">✕</button>
+          </td>
+        </tr>
+      } @else {
+        <tr>
+          <td>{{ i.id_reserva }}</td>
+          <td>{{ i.trayecto }}</td>
+          <td>{{ i.tramo }}</td>
+          <td>{{ i.id_vuelo }}</td>
+          <td>{{ i.origen }} → {{ i.destino }}</td>
+          <td>{{ i.aerolinea }}</td>
+          <td>{{ i.fecha_vuelo }}</td>
+          @if (esAdmin()) {
+            <td class="acciones">
+              <button class="btn-editar" (click)="iniciarEdicion(i)">Editar</button>
+              <button class="btn-eliminar" (click)="eliminar(i)">Eliminar</button>
+            </td>
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>

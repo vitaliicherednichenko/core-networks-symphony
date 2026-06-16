@@ -2,6 +2,9 @@
   <nav class="top-nav">
     @if (usuario()) {
       <a (click)="logout()">Cerrar sesión</a>
+      @if (usuario()) {
+        <p>Hola {{ usuario()!.nombre }}!!!</p>
+      }
     } @else {
       <a routerLink="/login">Iniciar sesión</a>
       <a routerLink="/signin">Registrarse</a>
@@ -9,261 +12,19 @@
   </nav>
 
   @if (isHome()) {
-  <h1>{{ title }}</h1>
+    <h1>{{ title }}</h1>
 
-  @if (usuario()) {
-    <p>Hola {{ usuario()!.nombre }}!!!</p>
-  }
-
-  @if (error()) {
-    <p class="error">{{ error() }}</p>
-  }
-
-  <section>
-    <h2>Vuelos ({{ vuelos().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Origen</th>
-          <th>Destino</th>
-          <th>Salida</th>
-          <th>Llegada</th>
-          <th>Aerolínea</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (v of vuelos(); track v.id) {
-          <tr>
-            <td>{{ v.id }}</td>
-            <td>{{ v.origen }}</td>
-            <td>{{ v.destino }}</td>
-            <td>{{ v.hora_salida }}</td>
-            <td>{{ v.hora_llegada }}</td>
-            <td>{{ v.aerolinea }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Pasajeros ({{ pasajeros().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Pasaporte</th>
-          <th>Apellido</th>
-          <th>Nombre</th>
-          <th>Nacimiento</th>
-          <th>Sexo</th>
-          <th>Teléfono</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (p of pasajeros(); track p.id_pasajero) {
-          <tr>
-            <td>{{ p.id_pasajero }}</td>
-            <td>{{ p.nro_pasaporte }}</td>
-            <td>{{ p.apellido }}</td>
-            <td>{{ p.nombre }}</td>
-            <td>{{ p.fecha_nacimiento }}</td>
-            <td>{{ p.sexo }}</td>
-            <td>{{ p.telefono }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Reservas ({{ reservas().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Salida</th>
-          <th>Retorno</th>
-          <th>Adultos</th>
-          <th>Niños</th>
-          <th>3ª edad</th>
-          <th>Clase</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (r of reservas(); track r.id_reserva) {
-          <tr>
-            <td>{{ r.id_reserva }}</td>
-            <td>{{ r.fecha_salida }}</td>
-            <td>{{ r.fecha_retorno }}</td>
-            <td>{{ r.nro_adultos }}</td>
-            <td>{{ r.nro_ninos }}</td>
-            <td>{{ r.nro_tercera_edad }}</td>
-            <td>{{ r.clase }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Boletos ({{ boletos().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Pasajero</th>
-          <th>Reserva</th>
-          <th>Clase</th>
-          <th>Precio</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (b of boletos(); track b.id_boleto) {
-          <tr>
-            <td>{{ b.id_boleto }}</td>
-            <td>{{ b.pasajero }}</td>
-            <td>{{ b.id_reserva }}</td>
-            <td>{{ b.clase }}</td>
-            <td>{{ b.precio }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Detalles de viajeros ({{ detallesViajeros().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Reserva</th>
-          <th>Pasajero ID</th>
-          <th>Pasajero</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (d of detallesViajeros(); track d.id_reserva + '-' + d.id_pasajero) {
-          <tr>
-            <td>{{ d.id_reserva }}</td>
-            <td>{{ d.id_pasajero }}</td>
-            <td>{{ d.pasajero }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Itinerarios ({{ itinerarios().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Reserva</th>
-          <th>Trayecto</th>
-          <th>Tramo</th>
-          <th>Vuelo</th>
-          <th>Ruta</th>
-          <th>Aerolínea</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (i of itinerarios(); track i.id_reserva + '-' + i.trayecto + '-' + i.tramo) {
-          <tr>
-            <td>{{ i.id_reserva }}</td>
-            <td>{{ i.trayecto }}</td>
-            <td>{{ i.tramo }}</td>
-            <td>{{ i.id_vuelo }}</td>
-            <td>{{ i.origen }} → {{ i.destino }}</td>
-            <td>{{ i.aerolinea }}</td>
-            <td>{{ i.fecha_vuelo }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Listado de pasajeros por vuelo ({{ listadoPasajerosVuelos().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Vuelo</th>
-          <th>Ruta</th>
-          <th>Pasajero ID</th>
-          <th>Pasajero</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (l of listadoPasajerosVuelos(); track l.id_vuelo + '-' + l.id_pasajero) {
-          <tr>
-            <td>{{ l.id_vuelo }}</td>
-            <td>{{ l.origen }} → {{ l.destino }}</td>
-            <td>{{ l.id_pasajero }}</td>
-            <td>{{ l.pasajero }}</td>
-            <td>{{ l.fecha }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Tarjetas de embarque ({{ tarjetasEmbarque().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Pasajero</th>
-          <th>Nº vuelo</th>
-          <th>Fecha</th>
-          <th>Clase</th>
-          <th>Asiento</th>
-          <th>Embarque</th>
-          <th>Sala</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (t of tarjetasEmbarque(); track t.id_tarjeta) {
-          <tr>
-            <td>{{ t.id_tarjeta }}</td>
-            <td>{{ t.pasajero }}</td>
-            <td>{{ t.nro_vuelo }}</td>
-            <td>{{ t.fecha_vuelo }}</td>
-            <td>{{ t.clase }}</td>
-            <td>{{ t.asiento }}</td>
-            <td>{{ t.embarque }}</td>
-            <td>{{ t.sala_embarque }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Usuarios ({{ usuarios().length }})</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (u of usuarios(); track u.id) {
-          <tr>
-            <td>{{ u.id }}</td>
-            <td>{{ u.nombre }}</td>
-            <td>{{ u.email }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </section>
+    <nav class="secciones">
+      <a routerLink="/vuelos">Vuelos</a>
+      <a routerLink="/pasajeros">Pasajeros</a>
+      <a routerLink="/reservas">Reservas</a>
+      <a routerLink="/boletos">Boletos</a>
+      <a routerLink="/detalles-viajeros">Detalles de viajeros</a>
+      <a routerLink="/itinerarios">Itinerarios</a>
+      <a routerLink="/listado-pasajeros-vuelos">Listado de pasajeros por vuelo</a>
+      <a routerLink="/tarjetas-embarque">Tarjetas de embarque</a>
+      <a routerLink="/usuarios">Usuarios</a>
+    </nav>
   }
 
   <router-outlet />

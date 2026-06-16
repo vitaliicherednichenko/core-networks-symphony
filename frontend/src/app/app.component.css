@@ -25,32 +25,20 @@ h1 {
     text-decoration: underline;
 }
 
-section {
-    margin-bottom: 2.5rem;
+.secciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
+.secciones a {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
 }
 
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 0.4rem 0.6rem;
-    text-align: left;
-}
-
-thead th {
-    background-color: #f3f4f6;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #fafafa;
-}
-
-.error {
-    color: #b91c1c;
-    font-weight: 600;
+.secciones a:hover {
+    text-decoration: underline;
 }
