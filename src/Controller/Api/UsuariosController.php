@@ -2,18 +2,22 @@
 
 namespace App\Controller\Api;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 class UsuariosController extends BaseApiController
 {
+    private const AVATAR_DIR = __DIR__ . '/../../../public/uploads/avatars';
+    private const AVATAR_MIME = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'image/gif' => 'gif'];
+    private const AVATAR_MAX_BYTES = 2 * 1024 * 1024;
 
     #[Route('/api/usuarios', name: 'api_usuarios_list', methods: ['GET'])]
     public function list(): JsonResponse
     {
         return $this->json(
-            $this->db->fetchAllAssociative('SELECT id, nombre, email, role FROM usuarios ORDER BY id')
+            $this->db->fetchAllAssociative('SELECT id, nombre, email, role, telefono, avatar FROM usuarios ORDER BY id')
         );
     }
 
@@ -79,6 +83,11 @@ class UsuariosController extends BaseApiController
 
         $row = ['nombre' => $nombre, 'email' => $email, 'role' => $role];
 
+        if (array_key_exists('telefono', $data)) {
+            $t = trim((string) ($data['telefono'] ?? ''));
+            $row['telefono'] = $t !== '' ? $t : null;
+        }
+
         if ($password !== '') {
             $row['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
@@ -87,7 +96,8 @@ class UsuariosController extends BaseApiController
             return $this->json(['error' => 'Usuario no encontrado'], 404);
         }
 
-        return $this->json(['id' => $id, 'nombre' => $nombre, 'email' => $email, 'role' => $role]);
+        $telefono = $row['telefono'] ?? null;
+        return $this->json(['id' => $id, 'nombre' => $nombre, 'email' => $email, 'role' => $role, 'telefono' => $telefono]);
     }
 
     #[Route('/api/usuarios/{id}', name: 'api_usuarios_delete', methods: ['DELETE'])]
@@ -111,6 +121,111 @@ class UsuariosController extends BaseApiController
         return $this->json(null, 204);
     }
 
+    #[Route('/api/perfil', name: 'api_perfil_update', methods: ['PUT'])]
+    public function actualizarPerfil(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true) ?? [];
+
+        $userId = (int) ($data['userId'] ?? 0);
+
+        if ($userId === 0) {
+            return $this->json(['error' => 'No autenticado'], 401);
+        }
+
+        $usuario = $this->db->fetchAssociative(
+            'SELECT id, nombre, email, password, role, telefono, avatar FROM usuarios WHERE id = ?',
+            [$userId]
+        );
+
+        if ($usuario === false) {
+            return $this->json(['error' => 'Usuario no encontrado'], 404);
+        }
+
+        $nombre          = trim((string) ($data['nombre'] ?? ''));
+        $newPassword     = (string) ($data['newPassword'] ?? '');
+        $currentPassword = (string) ($data['currentPassword'] ?? '');
+
+        if ($nombre === '') {
+            return $this->json(['error' => 'El nombre es obligatorio'], 400);
+        }
+
+        $row = ['nombre' => $nombre];
+
+        if ($newPassword !== '') {
+            if ($currentPassword === '' || !password_verify($currentPassword, $usuario['password'])) {
+                return $this->json(['error' => 'La contraseña actual es incorrecta'], 400);
+            }
+            $row['password'] = password_hash($newPassword, PASSWORD_DEFAULT);
+        }
+
+        if (array_key_exists('telefono', $data)) {
+            $t = trim((string) ($data['telefono'] ?? ''));
+            $row['telefono'] = $t !== '' ? $t : null;
+        }
+
+        $this->db->update('usuarios', $row, ['id' => $userId]);
+
+        $telefono = $row['telefono'] ?? ($usuario['telefono'] !== null ? (string) $usuario['telefono'] : null);
+
+        return $this->json([
+            'id'       => (int) $usuario['id'],
+            'nombre'   => $nombre,
+            'email'    => $usuario['email'],
+            'role'     => $usuario['role'],
+            'telefono' => $telefono,
+            'avatar'   => $usuario['avatar'],
+        ]);
+    }
+
+    #[Route('/api/perfil/avatar', name: 'api_perfil_avatar', methods: ['POST'])]
+    public function subirAvatar(Request $request): JsonResponse
+    {
+        $userId = (int) $request->request->get('userId', 0);
+
+        if ($userId === 0) {
+            return $this->json(['error' => 'No autenticado'], 401);
+        }
+
+        $usuario = $this->db->fetchAssociative('SELECT id, avatar FROM usuarios WHERE id = ?', [$userId]);
+        if ($usuario === false) {
+            return $this->json(['error' => 'Usuario no encontrado'], 404);
+        }
+
+        /** @var UploadedFile|null $file */
+        $file = $request->files->get('avatar');
+        if ($file === null) {
+            return $this->json(['error' => 'No se recibió ninguna imagen'], 400);
+        }
+
+        $ext = self::AVATAR_MIME[$file->getMimeType()] ?? null;
+        if ($ext === null) {
+            return $this->json(['error' => 'Formato no soportado. Usa JPG, PNG, WEBP o GIF'], 400);
+        }
+
+        if ($file->getSize() > self::AVATAR_MAX_BYTES) {
+            return $this->json(['error' => 'La imagen no puede superar los 2 MB'], 400);
+        }
+
+        if (!is_dir(self::AVATAR_DIR)) {
+            mkdir(self::AVATAR_DIR, 0775, true);
+        }
+
+        $filename = $userId . '-' . bin2hex(random_bytes(8)) . '.' . $ext;
+        $file->move(self::AVATAR_DIR, $filename);
+
+        if ($usuario['avatar'] !== null) {
+            $previo = self::AVATAR_DIR . '/' . basename((string) $usuario['avatar']);
+            if (is_file($previo)) {
+                unlink($previo);
+            }
+        }
+
+        $ruta = '/uploads/avatars/' . $filename;
+        $this->db->update('usuarios', ['avatar' => $ruta], ['id' => $userId]);
+
+        return $this->json(['avatar' => $ruta]);
+    }
+
     #[Route('/api/login', name: 'api_login', methods: ['POST'])]
     public function login(Request $request): JsonResponse
     {
@@ -123,17 +238,22 @@ class UsuariosController extends BaseApiController
             return $this->json(['error' => 'Email y contraseña son obligatorios'], 400);
         }
 
-        $usuario = $this->db->fetchAssociative('SELECT id, nombre, email, password, role FROM usuarios WHERE email = ?', [$email]);
+        $usuario = $this->db->fetchAssociative(
+            'SELECT id, nombre, email, password, role, telefono, avatar FROM usuarios WHERE email = ?',
+            [$email]
+        );
 
         if ($usuario === false || !password_verify($password, $usuario['password'])) {
             return $this->json(['error' => 'Credenciales inválidas'], 401);
         }
 
         return $this->json([
-            'id' => (int) $usuario['id'],
-            'nombre' => $usuario['nombre'],
-            'email' => $usuario['email'],
-            'role' => $usuario['role'],
+            'id'       => (int) $usuario['id'],
+            'nombre'   => $usuario['nombre'],
+            'email'    => $usuario['email'],
+            'role'     => $usuario['role'],
+            'telefono' => $usuario['telefono'] !== null ? (string) $usuario['telefono'] : null,
+            'avatar'   => $usuario['avatar'],
         ]);
     }
 }

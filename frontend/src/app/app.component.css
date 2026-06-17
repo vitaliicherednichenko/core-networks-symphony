@@ -10,6 +10,10 @@ h1 {
 }
 
 .top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
     margin-bottom: 1rem;
 }
 
@@ -17,12 +21,43 @@ h1 {
     color: #2563eb;
     text-decoration: none;
     font-weight: 600;
-    margin-right: 1rem;
     cursor: pointer;
 }
 
 .top-nav a:hover {
     text-decoration: underline;
+}
+
+.top-nav p {
+    margin: 0;
+}
+
+.top-nav-avatar-wrap {
+    display: block;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+}
+
+.top-nav-avatar,
+.top-nav-avatar-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.top-nav-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.top-nav-avatar-img {
+    object-fit: cover;
+    display: block;
 }
 
 .secciones {

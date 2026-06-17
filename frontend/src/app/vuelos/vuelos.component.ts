@@ -17,6 +17,7 @@ export class VuelosComponent implements OnInit {
 
   vuelos = signal<Vuelo[]>([]);
   error = signal<string | null>(null);
+  usuario = this.auth.usuario;
   esAdmin = computed(() => this.auth.usuario()?.role === 'admin');
 
   // Charts
@@ -63,15 +64,23 @@ export class VuelosComponent implements OnInit {
   }
 
   cargarVuelos(): void {
-    this.api.vuelos().subscribe({
+    const u = this.auth.usuario();
+    const userId = u && u.role !== 'admin' ? u.id : undefined;
+    this.api.vuelos(userId).subscribe({
       next: (res) => this.vuelos.set(res),
       error: (err) => this.error.set(err.message ?? 'Request failed'),
     });
   }
 
   agregarVuelo(): void {
+    this.error.set(null);
     const userId = this.auth.usuario()!.id;
-    this.api.crearVuelo(userId, this.formulario).subscribe({
+
+    const obs = this.esAdmin()
+      ? this.api.crearVuelo(userId, this.formulario)
+      : this.api.crearMiVuelo(userId, this.formulario);
+
+    obs.subscribe({
       next: (v) => {
         this.vuelos.update((list) => [...list, v]);
         this.formulario = { origen: '', destino: '', hora_salida: '', hora_llegada: '', aerolinea: '' };
@@ -88,8 +97,14 @@ export class VuelosComponent implements OnInit {
 
   guardarEdicion(): void {
     if (!this.editando) return;
+    this.error.set(null);
     const userId = this.auth.usuario()!.id;
-    this.api.actualizarVuelo(this.editando.id, userId, this.editForm).subscribe({
+
+    const obs = this.esAdmin()
+      ? this.api.actualizarVuelo(this.editando.id, userId, this.editForm)
+      : this.api.actualizarMiVuelo(this.editando.id, userId, this.editForm);
+
+    obs.subscribe({
       next: (actualizado) => {
         this.vuelos.update((list) => list.map((v) => (v.id === actualizado.id ? actualizado : v)));
         this.editando = null;
@@ -103,8 +118,14 @@ export class VuelosComponent implements OnInit {
   }
 
   eliminarVuelo(id: number): void {
+    this.error.set(null);
     const userId = this.auth.usuario()!.id;
-    this.api.eliminarVuelo(id, userId).subscribe({
+
+    const obs = this.esAdmin()
+      ? this.api.eliminarVuelo(id, userId)
+      : this.api.eliminarMiVuelo(userId, id);
+
+    obs.subscribe({
       next: () => this.vuelos.update((list) => list.filter((v) => v.id !== id)),
       error: (err) => this.error.set(err.error?.error ?? 'Error al eliminar vuelo'),
     });

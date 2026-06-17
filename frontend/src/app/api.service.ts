@@ -167,6 +167,7 @@ export interface ActualizarUsuario {
   nombre: string;
   email: string;
   role: string;
+  telefono?: string | null;
   password?: string;
 }
 
@@ -175,6 +176,8 @@ export interface Usuario {
   nombre: string;
   email: string;
   role: string;
+  telefono: string | null;
+  avatar: string | null;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -198,8 +201,9 @@ export class ApiService {
     return this.http.post<Usuario>(`${this.baseUrl}/login`, credenciales);
   }
 
-  vuelos(): Observable<Vuelo[]> {
-    return this.http.get<Vuelo[]>(`${this.baseUrl}/vuelos`);
+  vuelos(userId?: number): Observable<Vuelo[]> {
+    const params = userId ? `?userId=${userId}` : '';
+    return this.http.get<Vuelo[]>(`${this.baseUrl}/vuelos${params}`);
   }
 
   pasajeros(): Observable<Pasajero[]> {
@@ -327,6 +331,31 @@ export class ApiService {
 
   eliminarTarjetaEmbarque(id: number, userId: number): Observable<void> {
     return this.http.request<void>('DELETE', `${this.baseUrl}/tarjetas-embarque/${id}`, { body: { userId } });
+  }
+
+  // Mis vuelos (usuario no admin)
+  crearMiVuelo(userId: number, vuelo: NuevoVuelo): Observable<Vuelo> {
+    return this.http.post<Vuelo>(`${this.baseUrl}/mis-vuelos`, { userId, ...vuelo });
+  }
+
+  actualizarMiVuelo(id: number, userId: number, vuelo: NuevoVuelo): Observable<Vuelo> {
+    return this.http.put<Vuelo>(`${this.baseUrl}/mis-vuelos/${id}`, { userId, ...vuelo });
+  }
+
+  eliminarMiVuelo(userId: number, id: number): Observable<void> {
+    return this.http.request<void>('DELETE', `${this.baseUrl}/mis-vuelos/${id}`, { body: { userId } });
+  }
+
+  // Perfil propio
+  actualizarPerfil(userId: number, nombre: string, currentPassword?: string, newPassword?: string, telefono?: string | null): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.baseUrl}/perfil`, { userId, nombre, currentPassword, newPassword, telefono });
+  }
+
+  subirAvatar(userId: number, archivo: File): Observable<{ avatar: string }> {
+    const form = new FormData();
+    form.append('userId', String(userId));
+    form.append('avatar', archivo);
+    return this.http.post<{ avatar: string }>(`${this.baseUrl}/perfil/avatar`, form);
   }
 
   // Usuarios CRUD (admin)

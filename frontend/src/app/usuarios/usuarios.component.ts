@@ -24,7 +24,7 @@ export class UsuariosComponent implements OnInit {
   formulario: NuevoUsuario = { nombre: '', email: '', password: '' };
 
   editando: Usuario | null = null;
-  editForm: ActualizarUsuario & { password: string } = { nombre: '', email: '', role: 'user', password: '' };
+  editForm: ActualizarUsuario & { password: string } = { nombre: '', email: '', role: 'user', telefono: '', password: '' };
 
   ngOnInit(): void {
     this.api.usuarios().subscribe({
@@ -47,13 +47,19 @@ export class UsuariosComponent implements OnInit {
 
   iniciarEdicion(u: Usuario): void {
     this.editando = u;
-    this.editForm = { nombre: u.nombre, email: u.email, role: u.role, password: '' };
+    this.editForm = { nombre: u.nombre, email: u.email, role: u.role, telefono: u.telefono ?? '', password: '' };
   }
 
   guardarEdicion(): void {
     if (!this.editando) return;
     const userId = this.auth.usuario()!.id;
-    const payload: ActualizarUsuario = { nombre: this.editForm.nombre, email: this.editForm.email, role: this.editForm.role };
+    const t = (this.editForm.telefono ?? '').trim();
+    const payload: ActualizarUsuario = {
+      nombre: this.editForm.nombre,
+      email: this.editForm.email,
+      role: this.editForm.role,
+      telefono: t !== '' ? t : null,
+    };
     if (this.editForm.password !== '') payload.password = this.editForm.password;
     this.api.actualizarUsuario(this.editando.id, userId, payload).subscribe({
       next: (updated) => {

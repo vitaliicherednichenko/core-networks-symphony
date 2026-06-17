@@ -1,0 +1,123 @@
+.perfil-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.perfil-avatar-wrap {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: block;
+}
+
+.perfil-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.perfil-avatar-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.perfil-avatar-editar {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: #fff;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+.perfil-nombre {
+    margin: 0 0 0.15rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.perfil-email {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.perfil-role {
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.perfil-seccion {
+    max-width: 480px;
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.perfil-seccion h3 {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.perfil-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.perfil-form input {
+    padding: 0.45rem 0.65rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.perfil-form input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px #bfdbfe;
+}
+
+.perfil-form .btn-guardar {
+    align-self: flex-start;
+    margin-top: 0.25rem;
+}
+
+.exito {
+    margin-top: 0.6rem;
+    color: #15803d;
+    font-size: 0.875rem;
+    font-weight: 600;
+}

@@ -11,8 +11,10 @@ import { ItinerariosComponent } from './itinerarios/itinerarios.component';
 import { ListadoPasajerosVuelosComponent } from './listado-pasajeros-vuelos/listado-pasajeros-vuelos.component';
 import { TarjetasEmbarqueComponent } from './tarjetas-embarque/tarjetas-embarque.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 export const routes: Routes = [
+  { path: 'perfil', component: PerfilComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'vuelos', component: VuelosComponent },

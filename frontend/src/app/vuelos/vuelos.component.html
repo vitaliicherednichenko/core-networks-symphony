@@ -8,6 +8,7 @@
   <p class="error">{{ error() }}</p>
 }
 
+@if (esAdmin()) {
 <div class="graficos-fila">
   <section class="grafico-seccion">
     <h3>Por origen</h3>
@@ -69,8 +70,9 @@
     </svg>
   </section>
 </div>
+}
 
-@if (esAdmin()) {
+@if (usuario()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
       {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar vuelo' }}
@@ -79,11 +81,11 @@
 
   @if (mostrarFormulario) {
     <form class="formulario" (ngSubmit)="agregarVuelo()">
-      <input [(ngModel)]="formulario.origen"     name="origen"      placeholder="Origen"      required />
-      <input [(ngModel)]="formulario.destino"    name="destino"     placeholder="Destino"     required />
+      <input [(ngModel)]="formulario.origen"       name="origen"       placeholder="Origen"      required />
+      <input [(ngModel)]="formulario.destino"      name="destino"      placeholder="Destino"     required />
       <input [(ngModel)]="formulario.hora_salida"  name="hora_salida"  placeholder="Salida (YYYY-MM-DD HH:MM:SS)"  required />
       <input [(ngModel)]="formulario.hora_llegada" name="hora_llegada" placeholder="Llegada (YYYY-MM-DD HH:MM:SS)" required />
-      <input [(ngModel)]="formulario.aerolinea"  name="aerolinea"   placeholder="Aerolínea"   required />
+      <input [(ngModel)]="formulario.aerolinea"    name="aerolinea"    placeholder="Aerolínea"   required />
       <button type="submit" class="btn-guardar">Guardar</button>
     </form>
   }
@@ -98,7 +100,7 @@
       <th>Salida</th>
       <th>Llegada</th>
       <th>Aerolínea</th>
-      @if (esAdmin()) { <th>Acciones</th> }
+      @if (usuario()) { <th>Acciones</th> }
     </tr>
   </thead>
   <tbody>
@@ -106,13 +108,13 @@
       @if (editando?.id === v.id) {
         <tr class="fila-edicion">
           <td>{{ v.id }}</td>
-          <td><input [(ngModel)]="editForm.origen"      name="e-origen-{{v.id}}" /></td>
-          <td><input [(ngModel)]="editForm.destino"     name="e-destino-{{v.id}}" /></td>
-          <td><input [(ngModel)]="editForm.hora_salida" name="e-salida-{{v.id}}" /></td>
+          <td><input [(ngModel)]="editForm.origen"       name="e-origen-{{v.id}}" /></td>
+          <td><input [(ngModel)]="editForm.destino"      name="e-destino-{{v.id}}" /></td>
+          <td><input [(ngModel)]="editForm.hora_salida"  name="e-salida-{{v.id}}" /></td>
           <td><input [(ngModel)]="editForm.hora_llegada" name="e-llegada-{{v.id}}" /></td>
-          <td><input [(ngModel)]="editForm.aerolinea"   name="e-aerolinea-{{v.id}}" /></td>
+          <td><input [(ngModel)]="editForm.aerolinea"    name="e-aerolinea-{{v.id}}" /></td>
           <td class="acciones">
-            <button class="btn-guardar" (click)="guardarEdicion()">✓</button>
+            <button class="btn-guardar"  (click)="guardarEdicion()">✓</button>
             <button class="btn-cancelar" (click)="cancelarEdicion()">✕</button>
           </td>
         </tr>
@@ -124,9 +126,9 @@
           <td>{{ v.hora_salida }}</td>
           <td>{{ v.hora_llegada }}</td>
           <td>{{ v.aerolinea }}</td>
-          @if (esAdmin()) {
+          @if (usuario()) {
             <td class="acciones">
-              <button class="btn-editar" (click)="iniciarEdicion(v)">Editar</button>
+              <button class="btn-editar"   (click)="iniciarEdicion(v)">Editar</button>
               <button class="btn-eliminar" (click)="eliminarVuelo(v.id)">Eliminar</button>
             </td>
           }

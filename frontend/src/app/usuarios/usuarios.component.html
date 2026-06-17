@@ -31,6 +31,7 @@
       <th>ID</th>
       <th>Nombre</th>
       <th>Email</th>
+      <th>Teléfono</th>
       <th>Rol</th>
       @if (esAdmin()) { <th>Acciones</th> }
     </tr>
@@ -42,6 +43,7 @@
           <td>{{ u.id }}</td>
           <td><input [(ngModel)]="editForm.nombre"   name="e-no-{{u.id}}" /></td>
           <td><input [(ngModel)]="editForm.email"    name="e-em-{{u.id}}" type="email" /></td>
+          <td><input [(ngModel)]="editForm.telefono" name="e-te-{{u.id}}" type="tel" /></td>
           <td>
             <select [(ngModel)]="editForm.role" name="e-ro-{{u.id}}">
               <option value="user">user</option>
@@ -58,6 +60,7 @@
           <td>{{ u.id }}</td>
           <td>{{ u.nombre }}</td>
           <td>{{ u.email }}</td>
+          <td>{{ u.telefono }}</td>
           <td>{{ u.role }}</td>
           @if (esAdmin()) {
             <td class="acciones">

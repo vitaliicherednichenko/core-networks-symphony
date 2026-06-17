@@ -1,10 +1,16 @@
 <main>
   <nav class="top-nav">
     @if (usuario()) {
+      <a routerLink="/perfil">Mi perfil</a>
       <a (click)="logout()">Cerrar sesión</a>
-      @if (usuario()) {
-        <p>Hola {{ usuario()!.nombre }}!!!</p>
-      }
+      <p>Hola {{ usuario()!.nombre }}!!!</p>
+      <a routerLink="/perfil" class="top-nav-avatar-wrap">
+        @if (usuario()!.avatar) {
+          <img class="top-nav-avatar-img" [src]="usuario()!.avatar" alt="Avatar" />
+        } @else {
+          <div class="top-nav-avatar" [style.background]="colorAvatar()">{{ iniciales() }}</div>
+        }
+      </a>
     } @else {
       <a routerLink="/login">Iniciar sesión</a>
       <a routerLink="/signin">Registrarse</a>
@@ -16,14 +22,16 @@
 
     <nav class="secciones">
       <a routerLink="/vuelos">Vuelos</a>
-      <a routerLink="/pasajeros">Pasajeros</a>
-      <a routerLink="/reservas">Reservas</a>
-      <a routerLink="/boletos">Boletos</a>
-      <a routerLink="/detalles-viajeros">Detalles de viajeros</a>
-      <a routerLink="/itinerarios">Itinerarios</a>
-      <a routerLink="/listado-pasajeros-vuelos">Listado de pasajeros por vuelo</a>
-      <a routerLink="/tarjetas-embarque">Tarjetas de embarque</a>
-      <a routerLink="/usuarios">Usuarios</a>
+      @if (esAdmin()) {
+        <a routerLink="/pasajeros">Pasajeros</a>
+        <a routerLink="/reservas">Reservas</a>
+        <a routerLink="/boletos">Boletos</a>
+        <a routerLink="/detalles-viajeros">Detalles de viajeros</a>
+        <a routerLink="/itinerarios">Itinerarios</a>
+        <a routerLink="/listado-pasajeros-vuelos">Listado de pasajeros por vuelo</a>
+        <a routerLink="/tarjetas-embarque">Tarjetas de embarque</a>
+        <a routerLink="/usuarios">Usuarios</a>
+      }
     </nav>
   }
 
