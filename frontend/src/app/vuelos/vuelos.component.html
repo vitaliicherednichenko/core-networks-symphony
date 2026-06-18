@@ -30,6 +30,12 @@
       <input [(ngModel)]="formulario.hora_salida"  name="hora_salida"  placeholder="Salida (YYYY-MM-DD HH:MM:SS)"  required />
       <input [(ngModel)]="formulario.hora_llegada" name="hora_llegada" placeholder="Llegada (YYYY-MM-DD HH:MM:SS)" required />
       <input [(ngModel)]="formulario.aerolinea"    name="aerolinea"    placeholder="Aerolínea"   required />
+      @if (esAdmin()) {
+        <input [(ngModel)]="formulario.origen_lat"  name="origen_lat"  placeholder="Lat. Origen"  type="number" step="any" />
+        <input [(ngModel)]="formulario.origen_lon"  name="origen_lon"  placeholder="Lon. Origen"  type="number" step="any" />
+        <input [(ngModel)]="formulario.destino_lat" name="destino_lat" placeholder="Lat. Destino" type="number" step="any" />
+        <input [(ngModel)]="formulario.destino_lon" name="destino_lon" placeholder="Lon. Destino" type="number" step="any" />
+      }
       <button type="submit" class="btn-guardar">Guardar</button>
     </form>
   }
@@ -40,7 +46,17 @@
     <tr>
       <th>ID</th>
       <th>Origen</th>
+      <th>Temp. Origen (°C)</th>
+      @if (esAdmin()) {
+        <th>Lat. Origen</th>
+        <th>Lon. Origen</th>
+      }
       <th>Destino</th>
+      <th>Temp. Destino (°C)</th>
+      @if (esAdmin()) {
+        <th>Lat. Destino</th>
+        <th>Lon. Destino</th>
+      }
       <th>Salida</th>
       <th>Llegada</th>
       <th>Aerolínea</th>
@@ -53,7 +69,17 @@
         <tr class="fila-edicion">
           <td>{{ v.id }}</td>
           <td><input [(ngModel)]="editForm.origen"       name="e-origen-{{v.id}}" /></td>
+          <td>{{ temperaturaDe(v.origen_lat, v.origen_lon) ?? '—' }}</td>
+          @if (esAdmin()) {
+            <td><input [(ngModel)]="editForm.origen_lat"  name="e-olat-{{v.id}}"  type="number" step="any" /></td>
+            <td><input [(ngModel)]="editForm.origen_lon"  name="e-olon-{{v.id}}"  type="number" step="any" /></td>
+          }
           <td><input [(ngModel)]="editForm.destino"      name="e-destino-{{v.id}}" /></td>
+          <td>{{ temperaturaDe(v.destino_lat, v.destino_lon) ?? '—' }}</td>
+          @if (esAdmin()) {
+            <td><input [(ngModel)]="editForm.destino_lat" name="e-dlat-{{v.id}}" type="number" step="any" /></td>
+            <td><input [(ngModel)]="editForm.destino_lon" name="e-dlon-{{v.id}}" type="number" step="any" /></td>
+          }
           <td><input [(ngModel)]="editForm.hora_salida"  name="e-salida-{{v.id}}" /></td>
           <td><input [(ngModel)]="editForm.hora_llegada" name="e-llegada-{{v.id}}" /></td>
           <td><input [(ngModel)]="editForm.aerolinea"    name="e-aerolinea-{{v.id}}" /></td>
@@ -66,7 +92,17 @@
         <tr>
           <td>{{ v.id }}</td>
           <td>{{ v.origen }}</td>
+          <td>{{ temperaturaDe(v.origen_lat, v.origen_lon) ?? '—' }}</td>
+          @if (esAdmin()) {
+            <td>{{ v.origen_lat ?? '—' }}</td>
+            <td>{{ v.origen_lon ?? '—' }}</td>
+          }
           <td>{{ v.destino }}</td>
+          <td>{{ temperaturaDe(v.destino_lat, v.destino_lon) ?? '—' }}</td>
+          @if (esAdmin()) {
+            <td>{{ v.destino_lat ?? '—' }}</td>
+            <td>{{ v.destino_lon ?? '—' }}</td>
+          }
           <td>{{ v.hora_salida }}</td>
           <td>{{ v.hora_llegada }}</td>
           <td>{{ v.aerolinea }}</td>

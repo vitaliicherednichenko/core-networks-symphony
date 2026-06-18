@@ -33,21 +33,24 @@ class VuelosController extends BaseApiController
                     return $this->json([]);
                 }
 
-                return $this->json(
-                    $this->db->fetchAllAssociative(
-                        'SELECT DISTINCT v.* FROM vuelos v
-                         INNER JOIN listado_pasajeros_vuelos lpv ON lpv.id_vuelo = v.id
-                         WHERE lpv.id_pasajero = ?
-                         ORDER BY v.hora_salida',
-                        [(int) $idPasajero]
-                    )
-                );
+                return $this->json($this->db->fetchAllAssociative(
+                    'SELECT DISTINCT v.* FROM vuelos v
+                     INNER JOIN listado_pasajeros_vuelos lpv ON lpv.id_vuelo = v.id
+                     WHERE lpv.id_pasajero = ?
+                     ORDER BY v.hora_salida',
+                    [(int) $idPasajero]
+                ));
             }
         }
 
         return $this->json(
             $this->db->fetchAllAssociative('SELECT * FROM vuelos ORDER BY hora_salida')
         );
+    }
+
+    private function parsearCoordenada(array $data, string $campo): ?float
+    {
+        return isset($data[$campo]) && $data[$campo] !== '' && is_numeric($data[$campo]) ? (float) $data[$campo] : null;
     }
 
     #[Route('/api/vuelos', name: 'api_vuelos_create', methods: ['POST'])]
@@ -69,12 +72,21 @@ class VuelosController extends BaseApiController
             return $this->json(['error' => 'Todos los campos son obligatorios'], 400);
         }
 
+        $origenLat  = $this->parsearCoordenada($data, 'origen_lat');
+        $origenLon  = $this->parsearCoordenada($data, 'origen_lon');
+        $destinoLat = $this->parsearCoordenada($data, 'destino_lat');
+        $destinoLon = $this->parsearCoordenada($data, 'destino_lon');
+
         $this->db->insert('vuelos', [
             'origen'       => $origen,
             'destino'      => $destino,
             'hora_salida'  => $salida,
             'hora_llegada' => $llegada,
             'aerolinea'    => $aerolinea,
+            'origen_lat'   => $origenLat,
+            'origen_lon'   => $origenLon,
+            'destino_lat'  => $destinoLat,
+            'destino_lon'  => $destinoLon,
         ]);
 
         $id = (int) $this->db->lastInsertId();
@@ -82,6 +94,8 @@ class VuelosController extends BaseApiController
         return $this->json([
             'id' => $id, 'origen' => $origen, 'destino' => $destino,
             'hora_salida' => $salida, 'hora_llegada' => $llegada, 'aerolinea' => $aerolinea,
+            'origen_lat' => $origenLat, 'origen_lon' => $origenLon,
+            'destino_lat' => $destinoLat, 'destino_lon' => $destinoLon,
         ], 201);
     }
 
@@ -104,12 +118,21 @@ class VuelosController extends BaseApiController
             return $this->json(['error' => 'Todos los campos son obligatorios'], 400);
         }
 
+        $origenLat  = $this->parsearCoordenada($data, 'origen_lat');
+        $origenLon  = $this->parsearCoordenada($data, 'origen_lon');
+        $destinoLat = $this->parsearCoordenada($data, 'destino_lat');
+        $destinoLon = $this->parsearCoordenada($data, 'destino_lon');
+
         $affected = $this->db->update('vuelos', [
             'origen'       => $origen,
             'destino'      => $destino,
             'hora_salida'  => $salida,
             'hora_llegada' => $llegada,
             'aerolinea'    => $aerolinea,
+            'origen_lat'   => $origenLat,
+            'origen_lon'   => $origenLon,
+            'destino_lat'  => $destinoLat,
+            'destino_lon'  => $destinoLon,
         ], ['id' => $id]);
 
         if ($affected === 0) {
@@ -119,6 +142,8 @@ class VuelosController extends BaseApiController
         return $this->json([
             'id' => $id, 'origen' => $origen, 'destino' => $destino,
             'hora_salida' => $salida, 'hora_llegada' => $llegada, 'aerolinea' => $aerolinea,
+            'origen_lat' => $origenLat, 'origen_lon' => $origenLon,
+            'destino_lat' => $destinoLat, 'destino_lon' => $destinoLon,
         ]);
     }
 

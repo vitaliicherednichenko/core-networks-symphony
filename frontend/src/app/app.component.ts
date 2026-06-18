@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
 
   vuelos = signal<Vuelo[]>([]);
   vuelosError = signal<string | null>(null);
+  temperaturas = signal<Record<string, number | null>>({});
 
   iniciales = computed(() => {
     const nombre = this.usuario()?.nombre?.trim() ?? '';
@@ -54,9 +55,34 @@ export class AppComponent implements OnInit {
 
   private cargarVuelos(): void {
     this.api.vuelos().subscribe({
-      next: (res) => this.vuelos.set(res),
+      next: (res) => {
+        this.vuelos.set(res);
+        this.cargarTemperaturas(res);
+      },
       error: (err) => this.vuelosError.set(err.message ?? 'Error al cargar vuelos'),
     });
+  }
+
+  temperaturaDe(lat: number | null, lon: number | null): number | null {
+    if (lat === null || lon === null) return null;
+    return this.temperaturas()[`${lat},${lon}`] ?? null;
+  }
+
+  private cargarTemperaturas(vuelos: Vuelo[]): void {
+    const claves = new Set<string>();
+    for (const v of vuelos) {
+      if (v.origen_lat !== null && v.origen_lon !== null) claves.add(`${v.origen_lat},${v.origen_lon}`);
+      if (v.destino_lat !== null && v.destino_lon !== null) claves.add(`${v.destino_lat},${v.destino_lon}`);
+    }
+
+    for (const clave of claves) {
+      if (clave in this.temperaturas()) continue;
+      const [lat, lon] = clave.split(',').map(Number);
+      this.api.clima(lat, lon).subscribe({
+        next: (res) => this.temperaturas.update((t) => ({ ...t, [clave]: res.temperatura })),
+        error: () => this.temperaturas.update((t) => ({ ...t, [clave]: null })),
+      });
+    }
   }
 
   logout(): void {

@@ -17,6 +17,15 @@ export interface Vuelo {
   hora_salida: string;
   hora_llegada: string;
   aerolinea: string;
+  origen_lat: number | null;
+  origen_lon: number | null;
+  destino_lat: number | null;
+  destino_lon: number | null;
+}
+
+export interface Clima {
+  temperatura: number | null;
+  unidad: string | null;
 }
 
 export interface Pasajero {
@@ -105,6 +114,10 @@ export interface NuevoVuelo {
   hora_salida: string;
   hora_llegada: string;
   aerolinea: string;
+  origen_lat?: number | null;
+  origen_lon?: number | null;
+  destino_lat?: number | null;
+  destino_lon?: number | null;
 }
 
 export interface NuevoPasajero {
@@ -204,6 +217,10 @@ export class ApiService {
   vuelos(userId?: number): Observable<Vuelo[]> {
     const params = userId ? `?userId=${userId}` : '';
     return this.http.get<Vuelo[]>(`${this.baseUrl}/vuelos${params}`);
+  }
+
+  clima(lat: number, lon: number): Observable<Clima> {
+    return this.http.get<Clima>(`${this.baseUrl}/clima?lat=${lat}&lon=${lon}`);
   }
 
   pasajeros(): Observable<Pasajero[]> {
