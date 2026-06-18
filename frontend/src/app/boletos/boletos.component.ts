@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { ApiService, Boleto, NuevoBoleto } from '../api.service';
 import { AuthService } from '../auth.service';
+import { agrupar } from '../graficos';
+import { GraficoComponent } from '../grafico/grafico.component';
 
 @Component({
   selector: 'app-boletos',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, GraficoComponent],
   templateUrl: './boletos.component.html',
   styleUrl: './boletos.component.css',
 })
@@ -18,6 +20,9 @@ export class BoletosComponent implements OnInit {
   boletos = signal<Boleto[]>([]);
   error = signal<string | null>(null);
   esAdmin = computed(() => this.auth.usuario()?.role === 'admin');
+
+  // Charts
+  porClase = computed(() => agrupar(this.boletos(), 'clase'));
 
   mostrarFormulario = false;
   formulario: NuevoBoleto = { id_pasajero: 0, id_reserva: 0, clase: '', precio: '' };

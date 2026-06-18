@@ -10,65 +10,9 @@
 
 @if (esAdmin()) {
 <div class="graficos-fila">
-  <section class="grafico-seccion">
-    <h3>Por origen</h3>
-    <svg class="grafico" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-      <line x1="20" y1="160" x2="390" y2="160" stroke="#e5e7eb" />
-      @for (item of porOrigen(); track item.nombre; let idx = $index) {
-        <rect
-          [attr.x]="barX(idx, porOrigen().length)"
-          [attr.y]="160 - (item.total / maxDe(porOrigen())) * 130"
-          [attr.width]="barAncho(porOrigen().length)"
-          [attr.height]="(item.total / maxDe(porOrigen())) * 130"
-          class="barra" rx="4"
-        />
-        <text [attr.x]="centroX(idx, porOrigen().length)" [attr.y]="160 - (item.total / maxDe(porOrigen())) * 130 - 6"
-          text-anchor="middle" class="barra-valor">{{ item.total }}</text>
-        <text [attr.x]="centroX(idx, porOrigen().length)" y="178"
-          text-anchor="middle" class="barra-label">{{ item.nombre }}</text>
-      }
-    </svg>
-  </section>
-
-  <section class="grafico-seccion">
-    <h3>Por destino</h3>
-    <svg class="grafico" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-      <line x1="20" y1="160" x2="390" y2="160" stroke="#e5e7eb" />
-      @for (item of porDestino(); track item.nombre; let idx = $index) {
-        <rect
-          [attr.x]="barX(idx, porDestino().length)"
-          [attr.y]="160 - (item.total / maxDe(porDestino())) * 130"
-          [attr.width]="barAncho(porDestino().length)"
-          [attr.height]="(item.total / maxDe(porDestino())) * 130"
-          class="barra" rx="4"
-        />
-        <text [attr.x]="centroX(idx, porDestino().length)" [attr.y]="160 - (item.total / maxDe(porDestino())) * 130 - 6"
-          text-anchor="middle" class="barra-valor">{{ item.total }}</text>
-        <text [attr.x]="centroX(idx, porDestino().length)" y="178"
-          text-anchor="middle" class="barra-label">{{ item.nombre }}</text>
-      }
-    </svg>
-  </section>
-
-  <section class="grafico-seccion">
-    <h3>Por aerolínea</h3>
-    <svg class="grafico" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-      <line x1="20" y1="160" x2="390" y2="160" stroke="#e5e7eb" />
-      @for (item of porAerolinea(); track item.nombre; let idx = $index) {
-        <rect
-          [attr.x]="barX(idx, porAerolinea().length)"
-          [attr.y]="160 - (item.total / maxDe(porAerolinea())) * 130"
-          [attr.width]="barAncho(porAerolinea().length)"
-          [attr.height]="(item.total / maxDe(porAerolinea())) * 130"
-          class="barra" rx="4"
-        />
-        <text [attr.x]="centroX(idx, porAerolinea().length)" [attr.y]="160 - (item.total / maxDe(porAerolinea())) * 130 - 6"
-              text-anchor="middle" class="barra-valor">{{ item.total }}</text>
-        <text [attr.x]="centroX(idx, porAerolinea().length)" y="178"
-              text-anchor="middle" class="barra-label">{{ item.nombre }}</text>
-      }
-    </svg>
-  </section>
+  <app-grafico titulo="Por origen" [datos]="porOrigen()" />
+  <app-grafico titulo="Por destino" [datos]="porDestino()" />
+  <app-grafico titulo="Por aerolínea" [datos]="porAerolinea()" />
 </div>
 }
 

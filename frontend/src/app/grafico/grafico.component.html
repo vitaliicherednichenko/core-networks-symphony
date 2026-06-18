@@ -1,0 +1,19 @@
+<section class="grafico-seccion">
+  <h3>{{ titulo() }}</h3>
+  <svg class="grafico" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <line x1="20" y1="160" x2="390" y2="160" stroke="#e5e7eb" />
+    @for (item of datos(); track item.nombre; let idx = $index) {
+      <rect
+        [attr.x]="barX(idx, datos().length)"
+        [attr.y]="160 - (item.total / maxDe(datos())) * 130"
+        [attr.width]="barAncho(datos().length)"
+        [attr.height]="(item.total / maxDe(datos())) * 130"
+        class="barra" rx="4"
+      />
+      <text [attr.x]="centroX(idx, datos().length)" [attr.y]="160 - (item.total / maxDe(datos())) * 130 - 6"
+        text-anchor="middle" class="barra-valor">{{ item.total }}</text>
+      <text [attr.x]="centroX(idx, datos().length)" y="178"
+        text-anchor="middle" class="barra-label">{{ item.nombre }}</text>
+    }
+  </svg>
+</section>

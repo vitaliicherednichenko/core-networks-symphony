@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { ApiService, Vuelo, NuevoVuelo } from '../api.service';
 import { AuthService } from '../auth.service';
+import { agrupar } from '../graficos';
+import { GraficoComponent } from '../grafico/grafico.component';
 
 @Component({
   selector: 'app-vuelos',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, GraficoComponent],
   templateUrl: './vuelos.component.html',
   styleUrl: './vuelos.component.css',
 })
@@ -21,9 +23,9 @@ export class VuelosComponent implements OnInit {
   esAdmin = computed(() => this.auth.usuario()?.role === 'admin');
 
   // Charts
-  porAerolinea = computed(() => this.agrupar('aerolinea'));
-  porOrigen = computed(() => this.agrupar('origen'));
-  porDestino = computed(() => this.agrupar('destino'));
+  porAerolinea = computed(() => agrupar(this.vuelos(), 'aerolinea'));
+  porOrigen = computed(() => agrupar(this.vuelos(), 'origen'));
+  porDestino = computed(() => agrupar(this.vuelos(), 'destino'));
 
   // Add form
   mostrarFormulario = false;
@@ -32,32 +34,6 @@ export class VuelosComponent implements OnInit {
   // Edit state
   editando: Vuelo | null = null;
   editForm: NuevoVuelo = { origen: '', destino: '', hora_salida: '', hora_llegada: '', aerolinea: '' };
-
-  private agrupar(campo: keyof Vuelo): { nombre: string; total: number }[] {
-    const conteo: Record<string, number> = {};
-    for (const v of this.vuelos()) {
-      const clave = String(v[campo]);
-      conteo[clave] = (conteo[clave] ?? 0) + 1;
-    }
-    return Object.entries(conteo).map(([nombre, total]) => ({ nombre, total }));
-  }
-
-  maxDe(items: { total: number }[]): number {
-    return Math.max(...items.map((e) => e.total), 1);
-  }
-
-  centroX(idx: number, n: number): number {
-    return 30 + idx * (340 / n) + 340 / n / 2;
-  }
-
-  barX(idx: number, n: number): number {
-    const slot = 340 / n;
-    return 30 + idx * slot + slot * 0.15;
-  }
-
-  barAncho(n: number): number {
-    return (340 / n) * 0.7;
-  }
 
   ngOnInit(): void {
     this.cargarVuelos();

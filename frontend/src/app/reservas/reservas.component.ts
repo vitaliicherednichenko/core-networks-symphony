@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { ApiService, Reserva, NuevaReserva } from '../api.service';
 import { AuthService } from '../auth.service';
+import { agrupar } from '../graficos';
+import { GraficoComponent } from '../grafico/grafico.component';
 
 @Component({
   selector: 'app-reservas',
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, GraficoComponent],
   templateUrl: './reservas.component.html',
   styleUrl: './reservas.component.css',
 })
@@ -18,6 +20,9 @@ export class ReservasComponent implements OnInit {
   reservas = signal<Reserva[]>([]);
   error = signal<string | null>(null);
   esAdmin = computed(() => this.auth.usuario()?.role === 'admin');
+
+  // Charts
+  porClase = computed(() => agrupar(this.reservas(), 'clase'));
 
   mostrarFormulario = false;
   formulario: NuevaReserva = { fecha_salida: '', fecha_retorno: '', nro_adultos: 1, nro_ninos: 0, nro_tercera_edad: 0, clase: '' };

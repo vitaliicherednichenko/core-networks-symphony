@@ -1,6 +1,7 @@
 <main>
   <nav class="top-nav">
     @if (usuario()) {
+      @if (!esAdmin()) { <a routerLink="/vuelos">Mis Vuelos</a> }
       <a routerLink="/perfil">Mi perfil</a>
       <a (click)="logout()">Cerrar sesión</a>
       <p>Hola {{ usuario()!.nombre }}!!!</p>
@@ -21,8 +22,8 @@
     <h1>{{ title }}</h1>
 
     <nav class="secciones">
-      <a routerLink="/vuelos">Vuelos</a>
       @if (esAdmin()) {
+        <a routerLink="/vuelos">Vuelos</a>
         <a routerLink="/pasajeros">Pasajeros</a>
         <a routerLink="/reservas">Reservas</a>
         <a routerLink="/boletos">Boletos</a>
@@ -33,6 +34,37 @@
         <a routerLink="/usuarios">Usuarios</a>
       }
     </nav>
+
+    @if (!esAdmin()) {
+      <h2>Vuelos ({{ vuelos().length }})</h2>
+
+      @if (vuelosError()) { <p class="error">{{ vuelosError() }}</p> }
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Salida</th>
+            <th>Llegada</th>
+            <th>Aerolínea</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (v of vuelos(); track v.id) {
+            <tr>
+              <td>{{ v.id }}</td>
+              <td>{{ v.origen }}</td>
+              <td>{{ v.destino }}</td>
+              <td>{{ v.hora_salida }}</td>
+              <td>{{ v.hora_llegada }}</td>
+              <td>{{ v.aerolinea }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
   }
 
   <router-outlet />

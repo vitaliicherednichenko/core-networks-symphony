@@ -133,3 +133,48 @@ tbody tr:nth-child(even) {
     font-size: 0.8rem;
     margin-left: 0.3rem;
 }
+
+/* ── Charts shared styles ────────────────────────────── */
+.graficos-fila {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.grafico-seccion {
+    flex: 0 1 33%;
+    min-width: 0;
+}
+
+.grafico-seccion h3 {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.grafico {
+    display: block;
+    width: 100%;
+}
+
+.barra-label {
+    font-size: 10px;
+    fill: #374151;
+    dominant-baseline: middle;
+}
+
+.barra {
+    fill: #2563eb;
+}
+
+.barra-valor {
+    font-size: 10px;
+    font-weight: 600;
+    fill: #1e40af;
+    dominant-baseline: middle;
+}

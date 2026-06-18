@@ -9,6 +9,12 @@
 }
 
 @if (esAdmin()) {
+<div class="graficos-fila">
+  <app-grafico titulo="Por clase" [datos]="porClase()" />
+</div>
+}
+
+@if (esAdmin()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
       {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar reserva' }}
