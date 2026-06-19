@@ -1,5 +1,6 @@
 import { Component, computed, inject, signal, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 
 import { ApiService, Vuelo } from './api.service';
@@ -9,7 +10,7 @@ const COLORES_AVATAR = ['#2563eb', '#dc2626', '#16a34a', '#d97706', '#7c3aed', '
 
 @Component({
   selector: 'app-root',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -26,6 +27,19 @@ export class AppComponent implements OnInit {
   vuelos = signal<Vuelo[]>([]);
   vuelosError = signal<string | null>(null);
   temperaturas = signal<Record<string, number | null>>({});
+
+  // Búsqueda por origen y destino (usuarios regulares y visitantes)
+  filtroOrigen = signal('');
+  filtroDestino = signal('');
+
+  vuelosFiltrados = computed(() => {
+    const origen = this.filtroOrigen().trim().toLowerCase();
+    const destino = this.filtroDestino().trim().toLowerCase();
+    return this.vuelos().filter((v) =>
+      v.origen.toLowerCase().includes(origen) &&
+      v.destino.toLowerCase().includes(destino)
+    );
+  });
 
   iniciales = computed(() => {
     const nombre = this.usuario()?.nombre?.trim() ?? '';

@@ -6,6 +6,7 @@ import { ApiService, Reserva, NuevaReserva } from '../api.service';
 import { AuthService } from '../auth.service';
 import { agrupar } from '../graficos';
 import { GraficoComponent } from '../grafico/grafico.component';
+import { aEntradaFechaHora, desdeEntradaFechaHora } from '../fechas';
 
 @Component({
   selector: 'app-reservas',
@@ -16,6 +17,9 @@ import { GraficoComponent } from '../grafico/grafico.component';
 export class ReservasComponent implements OnInit {
   private api = inject(ApiService);
   private auth = inject(AuthService);
+
+  protected readonly aEntradaFechaHora = aEntradaFechaHora;
+  protected readonly desdeEntradaFechaHora = desdeEntradaFechaHora;
 
   reservas = signal<Reserva[]>([]);
   error = signal<string | null>(null);

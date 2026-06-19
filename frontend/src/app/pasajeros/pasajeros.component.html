@@ -20,7 +20,7 @@
       <input [(ngModel)]="formulario.nro_pasaporte" name="nro_pasaporte" placeholder="Nº Pasaporte" required />
       <input [(ngModel)]="formulario.apellido"      name="apellido"      placeholder="Apellido"     required />
       <input [(ngModel)]="formulario.nombre"        name="nombre"        placeholder="Nombre"       required />
-      <input [(ngModel)]="formulario.fecha_nacimiento" name="fecha_nacimiento" placeholder="Nacimiento (YYYY-MM-DD)" required />
+      <input type="date" [(ngModel)]="formulario.fecha_nacimiento" name="fecha_nacimiento" required />
       <input [(ngModel)]="formulario.sexo"          name="sexo"          placeholder="Sexo"         required />
       <input [(ngModel)]="formulario.direccion"     name="direccion"     placeholder="Dirección"    required />
       <input [(ngModel)]="formulario.telefono"      name="telefono"      placeholder="Teléfono"     required />
@@ -50,7 +50,7 @@
           <td><input [(ngModel)]="editForm.nro_pasaporte"    name="e-pp-{{p.id_pasajero}}" /></td>
           <td><input [(ngModel)]="editForm.apellido"         name="e-ap-{{p.id_pasajero}}" /></td>
           <td><input [(ngModel)]="editForm.nombre"           name="e-no-{{p.id_pasajero}}" /></td>
-          <td><input [(ngModel)]="editForm.fecha_nacimiento" name="e-fn-{{p.id_pasajero}}" /></td>
+          <td><input type="date" [(ngModel)]="editForm.fecha_nacimiento" name="e-fn-{{p.id_pasajero}}" /></td>
           <td><input [(ngModel)]="editForm.sexo"             name="e-sx-{{p.id_pasajero}}" /></td>
           <td><input [(ngModel)]="editForm.telefono"         name="e-te-{{p.id_pasajero}}" /></td>
           <td class="acciones">

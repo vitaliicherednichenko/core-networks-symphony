@@ -54,6 +54,22 @@ tbody tr:nth-child(even) {
     border-radius: 6px;
 }
 
+.buscador {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.buscador input {
+    flex: 1;
+    min-width: 140px;
+    padding: 0.35rem 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
 .formulario input,
 .formulario select {
     flex: 1;

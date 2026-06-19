@@ -19,7 +19,7 @@
     <form class="formulario" (ngSubmit)="agregar()">
       <input [(ngModel)]="formulario.id_vuelo"    name="id_vuelo"    placeholder="ID Vuelo"    type="number" min="1" required />
       <input [(ngModel)]="formulario.id_pasajero" name="id_pasajero" placeholder="ID Pasajero" type="number" min="1" required />
-      <input [(ngModel)]="formulario.fecha"       name="fecha"       placeholder="Fecha (YYYY-MM-DD HH:MM:SS)" required />
+      <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.fecha)" (ngModelChange)="formulario.fecha = desdeEntradaFechaHora($event)" name="fecha" required />
       <button type="submit" class="btn-guardar">Guardar</button>
     </form>
   }
@@ -44,7 +44,7 @@
           <td>{{ l.origen }} → {{ l.destino }}</td>
           <td>{{ l.id_pasajero }}</td>
           <td>{{ l.pasajero }}</td>
-          <td><input [(ngModel)]="editFecha" name="e-fe-{{l.id_vuelo}}-{{l.id_pasajero}}" /></td>
+          <td><input type="datetime-local" [ngModel]="aEntradaFechaHora(editFecha)" (ngModelChange)="editFecha = desdeEntradaFechaHora($event)" name="e-fe-{{l.id_vuelo}}-{{l.id_pasajero}}" /></td>
           <td class="acciones">
             <button class="btn-guardar" (click)="guardarEdicion(l)">✓</button>
             <button class="btn-cancelar" (click)="cancelarEdicion()">✕</button>

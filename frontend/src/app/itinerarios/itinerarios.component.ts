@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ApiService, Itinerario, NuevoItinerario } from '../api.service';
 import { AuthService } from '../auth.service';
+import { aEntradaFechaHora, desdeEntradaFechaHora } from '../fechas';
 
 @Component({
   selector: 'app-itinerarios',
@@ -14,6 +15,9 @@ import { AuthService } from '../auth.service';
 export class ItinerariosComponent implements OnInit {
   private api = inject(ApiService);
   private auth = inject(AuthService);
+
+  protected readonly aEntradaFechaHora = aEntradaFechaHora;
+  protected readonly desdeEntradaFechaHora = desdeEntradaFechaHora;
 
   itinerarios = signal<Itinerario[]>([]);
   error = signal<string | null>(null);

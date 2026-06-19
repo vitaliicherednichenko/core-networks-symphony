@@ -6,6 +6,7 @@ import { ApiService, Vuelo, NuevoVuelo } from '../api.service';
 import { AuthService } from '../auth.service';
 import { agrupar } from '../graficos';
 import { GraficoComponent } from '../grafico/grafico.component';
+import { aEntradaFechaHora, desdeEntradaFechaHora } from '../fechas';
 
 @Component({
   selector: 'app-vuelos',
@@ -17,18 +18,34 @@ export class VuelosComponent implements OnInit {
   private api = inject(ApiService);
   private auth = inject(AuthService);
 
+  protected readonly aEntradaFechaHora = aEntradaFechaHora;
+  protected readonly desdeEntradaFechaHora = desdeEntradaFechaHora;
+
   vuelos = signal<Vuelo[]>([]);
   error = signal<string | null>(null);
   usuario = this.auth.usuario;
   esAdmin = computed(() => this.auth.usuario()?.role === 'admin');
 
+  // Búsqueda por origen y destino (disponible para todos)
+  filtroOrigen = signal('');
+  filtroDestino = signal('');
+
+  vuelosFiltrados = computed(() => {
+    const origen = this.filtroOrigen().trim().toLowerCase();
+    const destino = this.filtroDestino().trim().toLowerCase();
+    return this.vuelos().filter((v) =>
+      v.origen.toLowerCase().includes(origen) &&
+      v.destino.toLowerCase().includes(destino)
+    );
+  });
+
   // Temperaturas por coordenada ("lat,lon" -> °C), cargadas de forma asíncrona
   temperaturas = signal<Record<string, number | null>>({});
 
   // Charts
-  porAerolinea = computed(() => agrupar(this.vuelos(), 'aerolinea'));
-  porOrigen = computed(() => agrupar(this.vuelos(), 'origen'));
-  porDestino = computed(() => agrupar(this.vuelos(), 'destino'));
+  porAerolinea = computed(() => agrupar(this.vuelosFiltrados(), 'aerolinea'));
+  porOrigen = computed(() => agrupar(this.vuelosFiltrados(), 'origen'));
+  porDestino = computed(() => agrupar(this.vuelosFiltrados(), 'destino'));
 
   // Add form
   mostrarFormulario = false;
@@ -50,9 +67,8 @@ export class VuelosComponent implements OnInit {
   }
 
   cargarVuelos(): void {
-    const u = this.auth.usuario();
-    const userId = u && u.role !== 'admin' ? u.id : undefined;
-    this.api.vuelos(userId).subscribe({
+    // Todos (admins, usuarios y visitantes) ven y pueden buscar el catálogo completo de vuelos.
+    this.api.vuelos().subscribe({
       next: (res) => {
         this.vuelos.set(res);
         this.cargarTemperaturas(res);

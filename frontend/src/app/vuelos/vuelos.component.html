@@ -2,11 +2,19 @@
   <a routerLink="/">← Inicio</a>
 </nav>
 
-<h2>Vuelos ({{ vuelos().length }})</h2>
+<h2>Vuelos ({{ vuelosFiltrados().length }})</h2>
 
 @if (error()) {
   <p class="error">{{ error() }}</p>
 }
+
+<form class="buscador" (ngSubmit)="$event.preventDefault()">
+  <input [ngModel]="filtroOrigen()"  (ngModelChange)="filtroOrigen.set($event)"  name="buscar-origen"  placeholder="Buscar por origen" />
+  <input [ngModel]="filtroDestino()" (ngModelChange)="filtroDestino.set($event)" name="buscar-destino" placeholder="Buscar por destino" />
+  @if (filtroOrigen() || filtroDestino()) {
+    <button type="button" class="btn-cancelar" (click)="filtroOrigen.set(''); filtroDestino.set('')">Limpiar</button>
+  }
+</form>
 
 @if (esAdmin()) {
 <div class="graficos-fila">
@@ -27,8 +35,8 @@
     <form class="formulario" (ngSubmit)="agregarVuelo()">
       <input [(ngModel)]="formulario.origen"       name="origen"       placeholder="Origen"      required />
       <input [(ngModel)]="formulario.destino"      name="destino"      placeholder="Destino"     required />
-      <input [(ngModel)]="formulario.hora_salida"  name="hora_salida"  placeholder="Salida (YYYY-MM-DD HH:MM:SS)"  required />
-      <input [(ngModel)]="formulario.hora_llegada" name="hora_llegada" placeholder="Llegada (YYYY-MM-DD HH:MM:SS)" required />
+      <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.hora_salida)"  (ngModelChange)="formulario.hora_salida = desdeEntradaFechaHora($event)"  name="hora_salida"  required />
+      <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.hora_llegada)" (ngModelChange)="formulario.hora_llegada = desdeEntradaFechaHora($event)" name="hora_llegada" required />
       <input [(ngModel)]="formulario.aerolinea"    name="aerolinea"    placeholder="Aerolínea"   required />
       @if (esAdmin()) {
         <input [(ngModel)]="formulario.origen_lat"  name="origen_lat"  placeholder="Lat. Origen"  type="number" step="any" />
@@ -64,7 +72,7 @@
     </tr>
   </thead>
   <tbody>
-    @for (v of vuelos(); track v.id) {
+    @for (v of vuelosFiltrados(); track v.id) {
       @if (editando?.id === v.id) {
         <tr class="fila-edicion">
           <td>{{ v.id }}</td>
@@ -80,8 +88,8 @@
             <td><input [(ngModel)]="editForm.destino_lat" name="e-dlat-{{v.id}}" type="number" step="any" /></td>
             <td><input [(ngModel)]="editForm.destino_lon" name="e-dlon-{{v.id}}" type="number" step="any" /></td>
           }
-          <td><input [(ngModel)]="editForm.hora_salida"  name="e-salida-{{v.id}}" /></td>
-          <td><input [(ngModel)]="editForm.hora_llegada" name="e-llegada-{{v.id}}" /></td>
+          <td><input type="datetime-local" [ngModel]="aEntradaFechaHora(editForm.hora_salida)"  (ngModelChange)="editForm.hora_salida = desdeEntradaFechaHora($event)"  name="e-salida-{{v.id}}" /></td>
+          <td><input type="datetime-local" [ngModel]="aEntradaFechaHora(editForm.hora_llegada)" (ngModelChange)="editForm.hora_llegada = desdeEntradaFechaHora($event)" name="e-llegada-{{v.id}}" /></td>
           <td><input [(ngModel)]="editForm.aerolinea"    name="e-aerolinea-{{v.id}}" /></td>
           <td class="acciones">
             <button class="btn-guardar"  (click)="guardarEdicion()">✓</button>
@@ -117,3 +125,7 @@
     }
   </tbody>
 </table>
+
+@if (vuelos().length && !vuelosFiltrados().length) {
+  <p>No hay vuelos que coincidan con la búsqueda.</p>
+}

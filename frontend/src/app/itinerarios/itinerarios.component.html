@@ -21,7 +21,7 @@
       <input [(ngModel)]="formulario.trayecto"    name="trayecto"    placeholder="Trayecto"     required />
       <input [(ngModel)]="formulario.tramo"       name="tramo"       placeholder="Tramo"        required />
       <input [(ngModel)]="formulario.id_vuelo"    name="id_vuelo"    placeholder="ID Vuelo"     type="number" />
-      <input [(ngModel)]="formulario.fecha_vuelo" name="fecha_vuelo" placeholder="Fecha (YYYY-MM-DD HH:MM:SS)" required />
+      <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.fecha_vuelo)" (ngModelChange)="formulario.fecha_vuelo = desdeEntradaFechaHora($event)" name="fecha_vuelo" required />
       <button type="submit" class="btn-guardar">Guardar</button>
     </form>
   }
@@ -50,7 +50,7 @@
           <td><input [(ngModel)]="editForm.id_vuelo"    name="e-iv-{{i.id_reserva}}-{{i.trayecto}}" type="number" /></td>
           <td>{{ i.origen }} → {{ i.destino }}</td>
           <td>{{ i.aerolinea }}</td>
-          <td><input [(ngModel)]="editForm.fecha_vuelo" name="e-fv-{{i.id_reserva}}-{{i.trayecto}}" /></td>
+          <td><input type="datetime-local" [ngModel]="aEntradaFechaHora(editForm.fecha_vuelo)" (ngModelChange)="editForm.fecha_vuelo = desdeEntradaFechaHora($event)" name="e-fv-{{i.id_reserva}}-{{i.trayecto}}" /></td>
           <td class="acciones">
             <button class="btn-guardar" (click)="guardarEdicion(i)">✓</button>
             <button class="btn-cancelar" (click)="cancelarEdicion()">✕</button>

@@ -36,9 +36,17 @@
     </nav>
 
     @if (!esAdmin()) {
-      <h2>Vuelos ({{ vuelos().length }})</h2>
+      <h2>Vuelos ({{ vuelosFiltrados().length }})</h2>
 
       @if (vuelosError()) { <p class="error">{{ vuelosError() }}</p> }
+
+      <form class="buscador" (ngSubmit)="$event.preventDefault()">
+        <input [ngModel]="filtroOrigen()"  (ngModelChange)="filtroOrigen.set($event)"  name="buscar-origen"  placeholder="Buscar por origen" />
+        <input [ngModel]="filtroDestino()" (ngModelChange)="filtroDestino.set($event)" name="buscar-destino" placeholder="Buscar por destino" />
+        @if (filtroOrigen() || filtroDestino()) {
+          <button type="button" class="btn-cancelar" (click)="filtroOrigen.set(''); filtroDestino.set('')">Limpiar</button>
+        }
+      </form>
 
       <table class="table table-striped">
         <thead>
@@ -54,7 +62,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (v of vuelos(); track v.id) {
+          @for (v of vuelosFiltrados(); track v.id) {
             <tr>
               <td>{{ v.id }}</td>
               <td>{{ v.origen }}</td>
