@@ -1,8 +1,8 @@
 <nav class="page-nav">
-  <a routerLink="/">← Inicio</a>
+  <a routerLink="/" i18n="@@nav.inicio">← Inicio</a>
 </nav>
 
-<h2>Detalles Viajeros ({{ detalles().length }})</h2>
+<h2 i18n="@@header.detallesViajeros">Detalles Viajeros ({{ detalles().length }})</h2>
 
 @if (error()) {
   <p class="error">{{ error() }}</p>
@@ -11,15 +11,19 @@
 @if (esAdmin()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
-      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar detalle' }}
+      @if (mostrarFormulario) {
+        <span i18n="@@comun.cancelarForm">✕ Cancelar</span>
+      } @else {
+        <span i18n="@@detalles.agregar">+ Agregar detalle</span>
+      }
     </button>
   </div>
 
   @if (mostrarFormulario) {
     <form class="formulario" (ngSubmit)="agregar()">
-      <input [(ngModel)]="formulario.id_reserva"  name="id_reserva"  placeholder="ID Reserva"  type="number" min="1" required />
-      <input [(ngModel)]="formulario.id_pasajero" name="id_pasajero" placeholder="ID Pasajero" type="number" min="1" required />
-      <button type="submit" class="btn-guardar">Guardar</button>
+      <input [(ngModel)]="formulario.id_reserva"  name="id_reserva"  placeholder="ID Reserva"  i18n-placeholder="@@col.idReserva" type="number" min="1" required />
+      <input [(ngModel)]="formulario.id_pasajero" name="id_pasajero" placeholder="ID Pasajero" i18n-placeholder="@@col.idPasajero" type="number" min="1" required />
+      <button type="submit" class="btn-guardar" i18n="@@comun.guardar">Guardar</button>
     </form>
   }
 }
@@ -27,10 +31,10 @@
 <table>
   <thead>
     <tr>
-      <th>ID Reserva</th>
-      <th>ID Pasajero</th>
-      <th>Pasajero</th>
-      @if (esAdmin()) { <th>Acciones</th> }
+      <th i18n="@@col.idReserva">ID Reserva</th>
+      <th i18n="@@col.idPasajero">ID Pasajero</th>
+      <th i18n="@@col.pasajero">Pasajero</th>
+      @if (esAdmin()) { <th i18n="@@col.acciones">Acciones</th> }
     </tr>
   </thead>
   <tbody>
@@ -41,7 +45,7 @@
         <td>{{ d.pasajero }}</td>
         @if (esAdmin()) {
           <td class="acciones">
-            <button class="btn-eliminar" (click)="eliminar(d.id_reserva, d.id_pasajero)">Eliminar</button>
+            <button class="btn-eliminar" (click)="eliminar(d.id_reserva, d.id_pasajero)" i18n="@@comun.eliminar">Eliminar</button>
           </td>
         }
       </tr>

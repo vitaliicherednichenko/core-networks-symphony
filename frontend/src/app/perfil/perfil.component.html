@@ -1,14 +1,14 @@
 <nav class="page-nav">
-  <a routerLink="/">← Inicio</a>
+  <a routerLink="/" i18n="@@nav.inicio">← Inicio</a>
 </nav>
 
-<h2>Mi perfil</h2>
+<h2 i18n="@@perfil.titulo">Mi perfil</h2>
 
 @if (usuario()) {
   <div class="perfil-cabecera">
     <label class="perfil-avatar-wrap" for="avatar-input">
       @if (usuario()!.avatar) {
-        <img class="perfil-avatar-img" [src]="usuario()!.avatar" alt="Avatar" />
+        <img class="perfil-avatar-img" [src]="usuario()!.avatar" alt="Avatar" i18n-alt="@@nav.avatarAlt" />
       } @else {
         <div class="perfil-avatar" [style.background]="colorAvatar()">{{ iniciales() }}</div>
       }
@@ -24,52 +24,52 @@
   @if (avatarError()) { <p class="error">{{ avatarError() }}</p> }
 
   <section class="perfil-seccion">
-    <h3>Nombre</h3>
+    <h3 i18n="@@form.nombre">Nombre</h3>
     <form class="perfil-form" (ngSubmit)="guardarNombre()">
-      <input [(ngModel)]="nuevoNombre" name="nombre" placeholder="Tu nombre" required />
-      <button type="submit" class="btn-guardar">Guardar</button>
+      <input [(ngModel)]="nuevoNombre" name="nombre" placeholder="Tu nombre" i18n-placeholder="@@perfil.tuNombre" required />
+      <button type="submit" class="btn-guardar" i18n="@@comun.guardar">Guardar</button>
     </form>
-    @if (nombreExito()) { <p class="exito">Nombre actualizado correctamente.</p> }
+    @if (nombreExito()) { <p class="exito" i18n="@@perfil.nombreOk">Nombre actualizado correctamente.</p> }
     @if (nombreError()) { <p class="error">{{ nombreError() }}</p> }
   </section>
 
   <section class="perfil-seccion">
-    <h3>Cambiar contraseña</h3>
+    <h3 i18n="@@perfil.cambiarContrasena">Cambiar contraseña</h3>
     <form class="perfil-form" (ngSubmit)="cambiarPassword()">
-      <input [(ngModel)]="currentPassword" name="currentPassword" type="password" placeholder="Contraseña actual"          required />
-      <input [(ngModel)]="newPassword"     name="newPassword"     type="password" placeholder="Nueva contraseña"           required />
-      <input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" placeholder="Confirmar nueva contraseña" required />
-      <button type="submit" class="btn-guardar">Cambiar contraseña</button>
+      <input [(ngModel)]="currentPassword" name="currentPassword" type="password" placeholder="Contraseña actual"          i18n-placeholder="@@perfil.passwordActual" required />
+      <input [(ngModel)]="newPassword"     name="newPassword"     type="password" placeholder="Nueva contraseña"           i18n-placeholder="@@perfil.passwordNueva" required />
+      <input [(ngModel)]="confirmPassword" name="confirmPassword" type="password" placeholder="Confirmar nueva contraseña" i18n-placeholder="@@perfil.passwordConfirmar" required />
+      <button type="submit" class="btn-guardar" i18n="@@perfil.cambiarContrasena">Cambiar contraseña</button>
     </form>
-    @if (passwordExito()) { <p class="exito">Contraseña cambiada correctamente.</p> }
+    @if (passwordExito()) { <p class="exito" i18n="@@perfil.passwordOk">Contraseña cambiada correctamente.</p> }
     @if (passwordError()) { <p class="error">{{ passwordError() }}</p> }
   </section>
 
   <section class="perfil-seccion">
-    <h3>Mis vuelos</h3>
-    <p class="perfil-hint">
+    <h3 i18n="@@perfil.misVuelos">Mis vuelos</h3>
+    <p class="perfil-hint" i18n="@@perfil.vincularHint">
       Vincula tu número de teléfono para ver únicamente tus vuelos en la sección
       <a routerLink="/vuelos">Vuelos</a>.
     </p>
 
     @if (usuario()!.telefono) {
-      <p class="pasajero-vinculado">
+      <p class="pasajero-vinculado" i18n="@@perfil.telefonoVinculado">
         Teléfono vinculado: <strong>{{ usuario()!.telefono }}</strong>
       </p>
       <div class="perfil-form">
-        <button class="btn-eliminar" type="button" (click)="desvincularTelefono()">Desvincular</button>
+        <button class="btn-eliminar" type="button" (click)="desvincularTelefono()" i18n="@@perfil.desvincular">Desvincular</button>
       </div>
     } @else {
       <form class="perfil-form" (ngSubmit)="vincularTelefono()">
         <input [(ngModel)]="inputTelefono" name="telefono"
-               type="tel" placeholder="Número de teléfono (ver tabla Pasajeros)" />
-        <button type="submit" class="btn-guardar">Vincular</button>
+               type="tel" placeholder="Número de teléfono (ver tabla Pasajeros)" i18n-placeholder="@@perfil.telefonoPlaceholder" />
+        <button type="submit" class="btn-guardar" i18n="@@perfil.vincular">Vincular</button>
       </form>
     }
 
-    @if (pasajeroExito()) { <p class="exito">Teléfono actualizado correctamente.</p> }
+    @if (pasajeroExito()) { <p class="exito" i18n="@@perfil.telefonoOk">Teléfono actualizado correctamente.</p> }
     @if (pasajeroError()) { <p class="error">{{ pasajeroError() }}</p> }
   </section>
 } @else {
-  <p>Debes <a routerLink="/login">iniciar sesión</a> para ver tu perfil.</p>
+  <p i18n="@@perfil.debesIniciarSesion">Debes <a routerLink="/login">iniciar sesión</a> para ver tu perfil.</p>
 }

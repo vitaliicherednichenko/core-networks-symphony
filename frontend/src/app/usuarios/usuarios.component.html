@@ -1,8 +1,8 @@
 <nav class="page-nav">
-  <a routerLink="/">← Inicio</a>
+  <a routerLink="/" i18n="@@nav.inicio">← Inicio</a>
 </nav>
 
-<h2>Usuarios ({{ usuarios().length }})</h2>
+<h2 i18n="@@header.usuarios">Usuarios ({{ usuarios().length }})</h2>
 
 @if (error()) {
   <p class="error">{{ error() }}</p>
@@ -11,16 +11,20 @@
 @if (esAdmin()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
-      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar usuario' }}
+      @if (mostrarFormulario) {
+        <span i18n="@@comun.cancelarForm">✕ Cancelar</span>
+      } @else {
+        <span i18n="@@usuarios.agregar">+ Agregar usuario</span>
+      }
     </button>
   </div>
 
   @if (mostrarFormulario) {
     <form class="formulario" (ngSubmit)="agregar()">
-      <input [(ngModel)]="formulario.nombre"   name="nombre"   placeholder="Nombre"   required />
-      <input [(ngModel)]="formulario.email"    name="email"    placeholder="Email"    type="email" required />
-      <input [(ngModel)]="formulario.password" name="password" placeholder="Contraseña" type="password" required />
-      <button type="submit" class="btn-guardar">Guardar</button>
+      <input [(ngModel)]="formulario.nombre"   name="nombre"   placeholder="Nombre"   i18n-placeholder="@@form.nombre" required />
+      <input [(ngModel)]="formulario.email"    name="email"    placeholder="Email"    i18n-placeholder="@@col.email" type="email" required />
+      <input [(ngModel)]="formulario.password" name="password" placeholder="Contraseña" i18n-placeholder="@@form.contrasena" type="password" required />
+      <button type="submit" class="btn-guardar" i18n="@@comun.guardar">Guardar</button>
     </form>
   }
 }
@@ -28,12 +32,12 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Nombre</th>
-      <th>Email</th>
-      <th>Teléfono</th>
-      <th>Rol</th>
-      @if (esAdmin()) { <th>Acciones</th> }
+      <th i18n="@@col.id">ID</th>
+      <th i18n="@@form.nombre">Nombre</th>
+      <th i18n="@@col.email">Email</th>
+      <th i18n="@@col.telefono">Teléfono</th>
+      <th i18n="@@col.rol">Rol</th>
+      @if (esAdmin()) { <th i18n="@@col.acciones">Acciones</th> }
     </tr>
   </thead>
   <tbody>
@@ -64,9 +68,9 @@
           <td>{{ u.role }}</td>
           @if (esAdmin()) {
             <td class="acciones">
-              <button class="btn-editar" (click)="iniciarEdicion(u)">Editar</button>
+              <button class="btn-editar" (click)="iniciarEdicion(u)" i18n="@@comun.editar">Editar</button>
               @if (u.id !== sesionId()) {
-                <button class="btn-eliminar" (click)="eliminar(u.id)">Eliminar</button>
+                <button class="btn-eliminar" (click)="eliminar(u.id)" i18n="@@comun.eliminar">Eliminar</button>
               }
             </td>
           }

@@ -67,8 +67,9 @@ export class VuelosComponent implements OnInit {
   }
 
   cargarVuelos(): void {
-    // Todos (admins, usuarios y visitantes) ven y pueden buscar el catálogo completo de vuelos.
-    this.api.vuelos().subscribe({
+    const u = this.auth.usuario();
+    const userId = u && u.role !== 'admin' ? u.id : undefined;
+    this.api.vuelos(userId).subscribe({
       next: (res) => {
         this.vuelos.set(res);
         this.cargarTemperaturas(res);

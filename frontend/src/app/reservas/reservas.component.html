@@ -1,8 +1,8 @@
 <nav class="page-nav">
-  <a routerLink="/">← Inicio</a>
+  <a routerLink="/" i18n="@@nav.inicio">← Inicio</a>
 </nav>
 
-<h2>Reservas ({{ reservas().length }})</h2>
+<h2 i18n="@@header.reservas">Reservas ({{ reservas().length }})</h2>
 
 @if (error()) {
   <p class="error">{{ error() }}</p>
@@ -17,7 +17,11 @@
 @if (esAdmin()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
-      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar reserva' }}
+      @if (mostrarFormulario) {
+        <span i18n="@@comun.cancelarForm">✕ Cancelar</span>
+      } @else {
+        <span i18n="@@reservas.agregar">+ Agregar reserva</span>
+      }
     </button>
   </div>
 
@@ -25,11 +29,11 @@
     <form class="formulario" (ngSubmit)="agregar()">
       <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.fecha_salida)"  (ngModelChange)="formulario.fecha_salida = desdeEntradaFechaHora($event)"  name="fecha_salida"  required />
       <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.fecha_retorno)" (ngModelChange)="formulario.fecha_retorno = desdeEntradaFechaHora($event)" name="fecha_retorno" required />
-      <input [(ngModel)]="formulario.nro_adultos"     name="nro_adultos"     placeholder="Adultos"     type="number" min="0" required />
-      <input [(ngModel)]="formulario.nro_ninos"       name="nro_ninos"       placeholder="Niños"       type="number" min="0" required />
-      <input [(ngModel)]="formulario.nro_tercera_edad" name="nro_tercera_edad" placeholder="3ª edad"   type="number" min="0" required />
-      <input [(ngModel)]="formulario.clase"           name="clase"           placeholder="Clase"       required />
-      <button type="submit" class="btn-guardar">Guardar</button>
+      <input [(ngModel)]="formulario.nro_adultos"     name="nro_adultos"     placeholder="Adultos"     i18n-placeholder="@@reservas.adultos" type="number" min="0" required />
+      <input [(ngModel)]="formulario.nro_ninos"       name="nro_ninos"       placeholder="Niños"       i18n-placeholder="@@reservas.ninos" type="number" min="0" required />
+      <input [(ngModel)]="formulario.nro_tercera_edad" name="nro_tercera_edad" placeholder="3ª edad"   i18n-placeholder="@@reservas.terceraEdad" type="number" min="0" required />
+      <input [(ngModel)]="formulario.clase"           name="clase"           placeholder="Clase"       i18n-placeholder="@@col.clase" required />
+      <button type="submit" class="btn-guardar" i18n="@@comun.guardar">Guardar</button>
     </form>
   }
 }
@@ -37,14 +41,14 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Salida</th>
-      <th>Retorno</th>
-      <th>Adultos</th>
-      <th>Niños</th>
-      <th>3ª edad</th>
-      <th>Clase</th>
-      @if (esAdmin()) { <th>Acciones</th> }
+      <th i18n="@@col.id">ID</th>
+      <th i18n="@@col.salida">Salida</th>
+      <th i18n="@@reservas.retorno">Retorno</th>
+      <th i18n="@@reservas.adultos">Adultos</th>
+      <th i18n="@@reservas.ninos">Niños</th>
+      <th i18n="@@reservas.terceraEdad">3ª edad</th>
+      <th i18n="@@col.clase">Clase</th>
+      @if (esAdmin()) { <th i18n="@@col.acciones">Acciones</th> }
     </tr>
   </thead>
   <tbody>
@@ -74,8 +78,8 @@
           <td>{{ r.clase }}</td>
           @if (esAdmin()) {
             <td class="acciones">
-              <button class="btn-editar" (click)="iniciarEdicion(r)">Editar</button>
-              <button class="btn-eliminar" (click)="eliminar(r.id_reserva)">Eliminar</button>
+              <button class="btn-editar" (click)="iniciarEdicion(r)" i18n="@@comun.editar">Editar</button>
+              <button class="btn-eliminar" (click)="eliminar(r.id_reserva)" i18n="@@comun.eliminar">Eliminar</button>
             </td>
           }
         </tr>

@@ -1,0 +1,1479 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" target-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="nav.misVuelos" datatype="html">
+        <source>Mis Vuelos</source>
+        <target>My Flights</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.miPerfil" datatype="html">
+        <source>Mi perfil</source>
+        <target>My profile</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.cerrarSesion" datatype="html">
+        <source>Cerrar sesión</source>
+        <target>Log out</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.saludo" datatype="html">
+        <source>Hola <x id="INTERPOLATION" equiv-text="{{ usuario()!.nombre }}"/>!!!</source>
+        <target>Hello <x id="INTERPOLATION" equiv-text="{{ usuario()!.nombre }}"/>!!!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.avatarAlt" datatype="html">
+        <source>Avatar</source>
+        <target>Avatar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.iniciarSesion" datatype="html">
+        <source>Iniciar sesión</source>
+        <target>Log in</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">3,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.registrarse" datatype="html">
+        <source>Registrarse</source>
+        <target>Sign up</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">17,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">3,6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">73,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.cambiarIdioma" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ otraLocaleEtiqueta }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ otraLocaleEtiqueta }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">19,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.vuelos" datatype="html">
+        <source>Vuelos</source>
+        <target>Flights</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.pasajeros" datatype="html">
+        <source>Pasajeros</source>
+        <target>Passengers</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.reservas" datatype="html">
+        <source>Reservas</source>
+        <target>Bookings</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.boletos" datatype="html">
+        <source>Boletos</source>
+        <target>Tickets</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.detallesViajeros" datatype="html">
+        <source>Detalles de viajeros</source>
+        <target>Traveler details</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.itinerarios" datatype="html">
+        <source>Itinerarios</source>
+        <target>Itineraries</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.listado" datatype="html">
+        <source>Listado de pasajeros por vuelo</source>
+        <target>Passengers per flight</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.tarjetas" datatype="html">
+        <source>Tarjetas de embarque</source>
+        <target>Boarding passes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.usuarios" datatype="html">
+        <source>Usuarios</source>
+        <target>Users</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">35,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.vuelosCount" datatype="html">
+        <source>Vuelos (<x id="INTERPOLATION" equiv-text="{{ vuelosFiltrados().length }}"/>)</source>
+        <target>Flights (<x id="INTERPOLATION" equiv-text="{{ vuelosFiltrados().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">40,42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buscar.origen" datatype="html">
+        <source>Buscar por origen</source>
+        <target>Search by origin</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buscar.destino" datatype="html">
+        <source>Buscar por destino</source>
+        <target>Search by destination</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="comun.limpiar" datatype="html">
+        <source>Limpiar</source>
+        <target>Clear</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">48,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">15,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.id" datatype="html">
+        <source>ID</source>
+        <target>ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.origen" datatype="html">
+        <source>Origen</source>
+        <target>Origin</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.tempOrigen" datatype="html">
+        <source>Temp. Origen (°C)</source>
+        <target>Origin Temp. (°C)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">57,58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.destino" datatype="html">
+        <source>Destino</source>
+        <target>Destination</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.tempDestino" datatype="html">
+        <source>Temp. Destino (°C)</source>
+        <target>Destination Temp. (°C)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">59,60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">67,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.salida" datatype="html">
+        <source>Salida</source>
+        <target>Departure</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">72,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.llegada" datatype="html">
+        <source>Llegada</source>
+        <target>Arrival</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.aerolinea" datatype="html">
+        <source>Aerolínea</source>
+        <target>Airline</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">62,64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="app.title" datatype="html">
+        <source>Sistema de Reservaciones</source>
+        <target>Reservation System</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.inicio" datatype="html">
+        <source>← Inicio</source>
+        <target>← Home</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">2,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.boletos" datatype="html">
+        <source>Boletos (<x id="INTERPOLATION" equiv-text="{{ boletos().length }}"/>)</source>
+        <target>Tickets (<x id="INTERPOLATION" equiv-text="{{ boletos().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="comun.cancelarForm" datatype="html">
+        <source>✕ Cancelar</source>
+        <target>✕ Cancel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="boletos.agregar" datatype="html">
+        <source>+ Agregar boleto</source>
+        <target>+ Add ticket</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">23,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.idPasajero" datatype="html">
+        <source>ID Pasajero</source>
+        <target>Passenger ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.idReserva" datatype="html">
+        <source>ID Reserva</source>
+        <target>Booking ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.clase" datatype="html">
+        <source>Clase</source>
+        <target>Class</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.precio" datatype="html">
+        <source>Precio</source>
+        <target>Price</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="comun.guardar" datatype="html">
+        <source>Guardar</source>
+        <target>Save</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">34,38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">26,30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">29,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">27,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">31,35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">30,32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">36,40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">32,36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">27,31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">51,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.pasajero" datatype="html">
+        <source>Pasajero</source>
+        <target>Passenger</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.acciones" datatype="html">
+        <source>Acciones</source>
+        <target>Actions</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">48,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">37,39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">44,46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">40,42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">46,48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">51,53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">50,52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">40,42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">75,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="comun.editar" datatype="html">
+        <source>Editar</source>
+        <target>Edit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">81,82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">86,87</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">71,72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">123,124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="comun.eliminar" datatype="html">
+        <source>Eliminar</source>
+        <target>Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/boletos/boletos.component.html</context>
+          <context context-type="linenumber">77,79</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">48,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">75,77</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">67,69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">77,79</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">82,84</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">87,89</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">73,75</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">124,126</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.detallesViajeros" datatype="html">
+        <source>Detalles Viajeros (<x id="INTERPOLATION" equiv-text="{{ detalles().length }}"/>)</source>
+        <target>Traveler Details (<x id="INTERPOLATION" equiv-text="{{ detalles().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="detalles.agregar" datatype="html">
+        <source>+ Agregar detalle</source>
+        <target>+ Add detail</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/detalles-viajeros/detalles-viajeros.component.html</context>
+          <context context-type="linenumber">17,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.itinerarios" datatype="html">
+        <source>Itinerarios (<x id="INTERPOLATION" equiv-text="{{ itinerarios().length }}"/>)</source>
+        <target>Itineraries (<x id="INTERPOLATION" equiv-text="{{ itinerarios().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itinerarios.agregar" datatype="html">
+        <source>+ Agregar itinerario</source>
+        <target>+ Add itinerary</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">17,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itinerarios.trayecto" datatype="html">
+        <source>Trayecto</source>
+        <target>Leg</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itinerarios.tramo" datatype="html">
+        <source>Tramo</source>
+        <target>Segment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.idVuelo" datatype="html">
+        <source>ID Vuelo</source>
+        <target>Flight ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itinerarios.reserva" datatype="html">
+        <source>Reserva</source>
+        <target>Booking</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itinerarios.vuelo" datatype="html">
+        <source>Vuelo</source>
+        <target>Flight</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itinerarios.ruta" datatype="html">
+        <source>Ruta</source>
+        <target>Route</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.fecha" datatype="html">
+        <source>Fecha</source>
+        <target>Date</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/itinerarios/itinerarios.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.listado" datatype="html">
+        <source>Listado Pasajeros por Vuelo (<x id="INTERPOLATION" equiv-text="{{ listado().length }}"/>)</source>
+        <target>Passengers per Flight (<x id="INTERPOLATION" equiv-text="{{ listado().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="listado.agregar" datatype="html">
+        <source>+ Agregar registro</source>
+        <target>+ Add record</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/listado-pasajeros-vuelos/listado-pasajeros-vuelos.component.html</context>
+          <context context-type="linenumber">17,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nav.volverInicio" datatype="html">
+        <source>← Volver al inicio</source>
+        <target>← Back to home</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="login.titulo" datatype="html">
+        <source>Iniciar</source>
+        <target>Log in</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.correo" datatype="html">
+        <source>Correo electrónico</source>
+        <target>Email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.correoRequerido" datatype="html">
+        <source>El correo es <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>obligatorio<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target>Email is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.correoInvalido" datatype="html">
+        <source>Introduce un correo válido</source>
+        <target>Enter a valid email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">26,28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">26,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.contrasena" datatype="html">
+        <source>Contraseña</source>
+        <target>Password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">46,48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.contrasenaRequerida" datatype="html">
+        <source>La contraseña es <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>obligatoria<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target>Password is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.min6" datatype="html">
+        <source>Debe tener al menos 6 caracteres</source>
+        <target>Must be at least 6 characters</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">42,44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">57,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="login.iniciando" datatype="html">
+        <source>Iniciando...</source>
+        <target>Logging in...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">53,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="login.iniciar" datatype="html">
+        <source>Iniciar</source>
+        <target>Log in</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/login/login.component.html</context>
+          <context context-type="linenumber">55,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.pasajeros" datatype="html">
+        <source>Pasajeros (<x id="INTERPOLATION" equiv-text="{{ pasajeros().length }}"/>)</source>
+        <target>Passengers (<x id="INTERPOLATION" equiv-text="{{ pasajeros().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pasajeros.agregar" datatype="html">
+        <source>+ Agregar pasajero</source>
+        <target>+ Add passenger</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">17,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pasajeros.nroPasaporte" datatype="html">
+        <source>Nº Pasaporte</source>
+        <target>Passport No.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pasajeros.apellido" datatype="html">
+        <source>Apellido</source>
+        <target>Last name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.nombre" datatype="html">
+        <source>Nombre</source>
+        <target>Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pasajeros.sexo" datatype="html">
+        <source>Sexo</source>
+        <target>Sex</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pasajeros.direccion" datatype="html">
+        <source>Dirección</source>
+        <target>Address</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.telefono" datatype="html">
+        <source>Teléfono</source>
+        <target>Phone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pasajeros.pasaporte" datatype="html">
+        <source>Pasaporte</source>
+        <target>Passport</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="pasajeros.nacimiento" datatype="html">
+        <source>Nacimiento</source>
+        <target>Date of birth</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pasajeros/pasajeros.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.titulo" datatype="html">
+        <source>Mi perfil</source>
+        <target>My profile</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">5,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.tuNombre" datatype="html">
+        <source>Tu nombre</source>
+        <target>Your name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.nombreOk" datatype="html">
+        <source>Nombre actualizado correctamente.</source>
+        <target>Name updated successfully.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.cambiarContrasena" datatype="html">
+        <source>Cambiar contraseña</source>
+        <target>Change password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">42,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.passwordActual" datatype="html">
+        <source>Contraseña actual</source>
+        <target>Current password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.passwordNueva" datatype="html">
+        <source>Nueva contraseña</source>
+        <target>New password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.passwordConfirmar" datatype="html">
+        <source>Confirmar nueva contraseña</source>
+        <target>Confirm new password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.passwordOk" datatype="html">
+        <source>Contraseña cambiada correctamente.</source>
+        <target>Password changed successfully.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.misVuelos" datatype="html">
+        <source>Mis vuelos</source>
+        <target>My flights</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.vincularHint" datatype="html">
+        <source> Vincula tu número de teléfono para ver únicamente tus vuelos en la sección <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/vuelos&quot;&gt;"/>Vuelos<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. </source>
+        <target> Link your phone number to see only your flights in the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/vuelos&quot;&gt;"/>Flights<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> section. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">51,55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.telefonoVinculado" datatype="html">
+        <source> Teléfono vinculado: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ usuario()!.telefono }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target> Linked phone: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ usuario()!.telefono }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">57,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.desvincular" datatype="html">
+        <source>Desvincular</source>
+        <target>Unlink</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">60,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.telefonoPlaceholder" datatype="html">
+        <source>Número de teléfono (ver tabla Pasajeros)</source>
+        <target>Phone number (see Passengers table)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.vincular" datatype="html">
+        <source>Vincular</source>
+        <target>Link</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">66,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.telefonoOk" datatype="html">
+        <source>Teléfono actualizado correctamente.</source>
+        <target>Phone updated successfully.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="perfil.debesIniciarSesion" datatype="html">
+        <source>Debes <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/login&quot;&gt;"/>iniciar sesión<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> para ver tu perfil.</source>
+        <target>You must <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/login&quot;&gt;"/>log in<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to view your profile.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/perfil/perfil.component.html</context>
+          <context context-type="linenumber">74,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.reservas" datatype="html">
+        <source>Reservas (<x id="INTERPOLATION" equiv-text="{{ reservas().length }}"/>)</source>
+        <target>Bookings (<x id="INTERPOLATION" equiv-text="{{ reservas().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reservas.agregar" datatype="html">
+        <source>+ Agregar reserva</source>
+        <target>+ Add booking</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">23,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reservas.adultos" datatype="html">
+        <source>Adultos</source>
+        <target>Adults</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reservas.ninos" datatype="html">
+        <source>Niños</source>
+        <target>Children</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reservas.terceraEdad" datatype="html">
+        <source>3ª edad</source>
+        <target>Seniors</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="reservas.retorno" datatype="html">
+        <source>Retorno</source>
+        <target>Return</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservas/reservas.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.nombreRequerido" datatype="html">
+        <source>El nombre es <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>obligatorio<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target>Name is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="comun.guardando" datatype="html">
+        <source>Guardando...</source>
+        <target>Saving...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/signin/signin.component.html</context>
+          <context context-type="linenumber">71,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.tarjetas" datatype="html">
+        <source>Tarjetas de Embarque (<x id="INTERPOLATION" equiv-text="{{ tarjetas().length }}"/>)</source>
+        <target>Boarding Passes (<x id="INTERPOLATION" equiv-text="{{ tarjetas().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tarjetas.agregar" datatype="html">
+        <source>+ Agregar tarjeta</source>
+        <target>+ Add boarding pass</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">17,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tarjetas.embarque" datatype="html">
+        <source>Embarque</source>
+        <target>Boarding</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tarjetas.nroVueloMayus" datatype="html">
+        <source>Nº Vuelo</source>
+        <target>Flight No.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tarjetas.asiento" datatype="html">
+        <source>Asiento</source>
+        <target>Seat</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tarjetas.sala" datatype="html">
+        <source>Sala</source>
+        <target>Gate</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tarjetas.nroVuelo" datatype="html">
+        <source>Nº vuelo</source>
+        <target>Flight no.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/tarjetas-embarque/tarjetas-embarque.component.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="header.usuarios" datatype="html">
+        <source>Usuarios (<x id="INTERPOLATION" equiv-text="{{ usuarios().length }}"/>)</source>
+        <target>Users (<x id="INTERPOLATION" equiv-text="{{ usuarios().length }}"/>)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="usuarios.agregar" datatype="html">
+        <source>+ Agregar usuario</source>
+        <target>+ Add user</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">17,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.email" datatype="html">
+        <source>Email</source>
+        <target>Email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="col.rol" datatype="html">
+        <source>Rol</source>
+        <target>Role</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/usuarios/usuarios.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vuelos.agregar" datatype="html">
+        <source>+ Agregar vuelo</source>
+        <target>+ Add flight</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">33,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vuelos.latOrigen" datatype="html">
+        <source>Lat. Origen</source>
+        <target>Origin Lat.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vuelos.lonOrigen" datatype="html">
+        <source>Lon. Origen</source>
+        <target>Origin Lon.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">64,66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vuelos.latDestino" datatype="html">
+        <source>Lat. Destino</source>
+        <target>Destination Lat.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">69,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vuelos.lonDestino" datatype="html">
+        <source>Lon. Destino</source>
+        <target>Destination Lon.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">70,72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="vuelos.sinResultados" datatype="html">
+        <source>No hay vuelos que coincidan con la búsqueda.</source>
+        <target>No flights match your search.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/vuelos/vuelos.component.html</context>
+          <context context-type="linenumber">134,136</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

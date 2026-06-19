@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, OnInit } from '@angular/core';
+import { Component, computed, inject, signal, OnInit, LOCALE_ID } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { filter } from 'rxjs/operators';
@@ -18,8 +18,14 @@ export class AppComponent implements OnInit {
   private router = inject(Router);
   private auth = inject(AuthService);
   private api = inject(ApiService);
+  private localeId = inject(LOCALE_ID);
 
-  title = 'Sistema de Reservaciones';
+  readonly otraLocaleEtiqueta = this.localeId.startsWith('en') ? 'Español' : 'English';
+  otraLocaleHref(): string {
+    return this.localeId.startsWith('en') ? '/es/' : '/en/';
+  }
+
+  title = $localize`:@@app.title:Sistema de Reservaciones`;
   usuario = this.auth.usuario;
   esAdmin = computed(() => this.auth.usuario()?.role === 'admin');
   isHome = signal(this.router.url === '/');

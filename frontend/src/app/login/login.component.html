@@ -1,17 +1,17 @@
 <nav class="top-nav">
-  <a routerLink="/">← Volver al inicio</a>
-  <a routerLink="/signin">Registrarse</a>
+  <a routerLink="/" i18n="@@nav.volverInicio">← Volver al inicio</a>
+  <a routerLink="/signin" i18n="@@nav.registrarse">Registrarse</a>
 </nav>
 
 <mat-card class="login-card">
   <mat-card-header>
-    <mat-card-title>Iniciar</mat-card-title>
+    <mat-card-title i18n="@@login.titulo">Iniciar</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="login-field" appearance="outline">
-        <mat-label>Correo electrónico</mat-label>
+        <mat-label i18n="@@form.correo">Correo electrónico</mat-label>
         <input
           type="email"
           matInput
@@ -21,14 +21,14 @@
           autocomplete="email"
         />
         @if (loginForm.controls.email.hasError('required')) {
-          <mat-error>El correo es <strong>obligatorio</strong></mat-error>
+          <mat-error i18n="@@form.correoRequerido">El correo es <strong>obligatorio</strong></mat-error>
         } @else if (loginForm.controls.email.hasError('email')) {
-          <mat-error>Introduce un correo válido</mat-error>
+          <mat-error i18n="@@form.correoInvalido">Introduce un correo válido</mat-error>
         }
       </mat-form-field>
 
       <mat-form-field class="login-field" appearance="outline">
-        <mat-label>Contraseña</mat-label>
+        <mat-label i18n="@@form.contrasena">Contraseña</mat-label>
         <input
           [type]="hidePassword ? 'password' : 'text'"
           matInput
@@ -37,9 +37,9 @@
           autocomplete="current-password"
         />
         @if (loginForm.controls.password.hasError('required')) {
-          <mat-error>La contraseña es <strong>obligatoria</strong></mat-error>
+          <mat-error i18n="@@form.contrasenaRequerida">La contraseña es <strong>obligatoria</strong></mat-error>
         } @else if (loginForm.controls.password.hasError('minlength')) {
-          <mat-error>Debe tener al menos 6 caracteres</mat-error>
+          <mat-error i18n="@@form.min6">Debe tener al menos 6 caracteres</mat-error>
         }
       </mat-form-field>
 
@@ -49,7 +49,11 @@
 
       <div class="login-actions">
         <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid || submitting()">
-          {{ submitting() ? 'Iniciando...' : 'Iniciar' }}
+          @if (submitting()) {
+            <span i18n="@@login.iniciando">Iniciando...</span>
+          } @else {
+            <span i18n="@@login.iniciar">Iniciar</span>
+          }
         </button>
       </div>
     </form>

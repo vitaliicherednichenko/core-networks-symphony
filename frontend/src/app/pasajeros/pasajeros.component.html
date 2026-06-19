@@ -1,8 +1,8 @@
 <nav class="page-nav">
-  <a routerLink="/">← Inicio</a>
+  <a routerLink="/" i18n="@@nav.inicio">← Inicio</a>
 </nav>
 
-<h2>Pasajeros ({{ pasajeros().length }})</h2>
+<h2 i18n="@@header.pasajeros">Pasajeros ({{ pasajeros().length }})</h2>
 
 @if (error()) {
   <p class="error">{{ error() }}</p>
@@ -11,20 +11,24 @@
 @if (esAdmin()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
-      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar pasajero' }}
+      @if (mostrarFormulario) {
+        <span i18n="@@comun.cancelarForm">✕ Cancelar</span>
+      } @else {
+        <span i18n="@@pasajeros.agregar">+ Agregar pasajero</span>
+      }
     </button>
   </div>
 
   @if (mostrarFormulario) {
     <form class="formulario" (ngSubmit)="agregar()">
-      <input [(ngModel)]="formulario.nro_pasaporte" name="nro_pasaporte" placeholder="Nº Pasaporte" required />
-      <input [(ngModel)]="formulario.apellido"      name="apellido"      placeholder="Apellido"     required />
-      <input [(ngModel)]="formulario.nombre"        name="nombre"        placeholder="Nombre"       required />
+      <input [(ngModel)]="formulario.nro_pasaporte" name="nro_pasaporte" placeholder="Nº Pasaporte" i18n-placeholder="@@pasajeros.nroPasaporte" required />
+      <input [(ngModel)]="formulario.apellido"      name="apellido"      placeholder="Apellido"     i18n-placeholder="@@pasajeros.apellido" required />
+      <input [(ngModel)]="formulario.nombre"        name="nombre"        placeholder="Nombre"       i18n-placeholder="@@form.nombre" required />
       <input type="date" [(ngModel)]="formulario.fecha_nacimiento" name="fecha_nacimiento" required />
-      <input [(ngModel)]="formulario.sexo"          name="sexo"          placeholder="Sexo"         required />
-      <input [(ngModel)]="formulario.direccion"     name="direccion"     placeholder="Dirección"    required />
-      <input [(ngModel)]="formulario.telefono"      name="telefono"      placeholder="Teléfono"     required />
-      <button type="submit" class="btn-guardar">Guardar</button>
+      <input [(ngModel)]="formulario.sexo"          name="sexo"          placeholder="Sexo"         i18n-placeholder="@@pasajeros.sexo" required />
+      <input [(ngModel)]="formulario.direccion"     name="direccion"     placeholder="Dirección"    i18n-placeholder="@@pasajeros.direccion" required />
+      <input [(ngModel)]="formulario.telefono"      name="telefono"      placeholder="Teléfono"     i18n-placeholder="@@col.telefono" required />
+      <button type="submit" class="btn-guardar" i18n="@@comun.guardar">Guardar</button>
     </form>
   }
 }
@@ -32,14 +36,14 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Pasaporte</th>
-      <th>Apellido</th>
-      <th>Nombre</th>
-      <th>Nacimiento</th>
-      <th>Sexo</th>
-      <th>Teléfono</th>
-      @if (esAdmin()) { <th>Acciones</th> }
+      <th i18n="@@col.id">ID</th>
+      <th i18n="@@pasajeros.pasaporte">Pasaporte</th>
+      <th i18n="@@pasajeros.apellido">Apellido</th>
+      <th i18n="@@form.nombre">Nombre</th>
+      <th i18n="@@pasajeros.nacimiento">Nacimiento</th>
+      <th i18n="@@pasajeros.sexo">Sexo</th>
+      <th i18n="@@col.telefono">Teléfono</th>
+      @if (esAdmin()) { <th i18n="@@col.acciones">Acciones</th> }
     </tr>
   </thead>
   <tbody>
@@ -69,8 +73,8 @@
           <td>{{ p.telefono }}</td>
           @if (esAdmin()) {
             <td class="acciones">
-              <button class="btn-editar" (click)="iniciarEdicion(p)">Editar</button>
-              <button class="btn-eliminar" (click)="eliminar(p.id_pasajero)">Eliminar</button>
+              <button class="btn-editar" (click)="iniciarEdicion(p)" i18n="@@comun.editar">Editar</button>
+              <button class="btn-eliminar" (click)="eliminar(p.id_pasajero)" i18n="@@comun.eliminar">Eliminar</button>
             </td>
           }
         </tr>

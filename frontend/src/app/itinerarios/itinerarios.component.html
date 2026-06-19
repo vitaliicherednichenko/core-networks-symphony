@@ -1,8 +1,8 @@
 <nav class="page-nav">
-  <a routerLink="/">← Inicio</a>
+  <a routerLink="/" i18n="@@nav.inicio">← Inicio</a>
 </nav>
 
-<h2>Itinerarios ({{ itinerarios().length }})</h2>
+<h2 i18n="@@header.itinerarios">Itinerarios ({{ itinerarios().length }})</h2>
 
 @if (error()) {
   <p class="error">{{ error() }}</p>
@@ -11,18 +11,22 @@
 @if (esAdmin()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
-      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar itinerario' }}
+      @if (mostrarFormulario) {
+        <span i18n="@@comun.cancelarForm">✕ Cancelar</span>
+      } @else {
+        <span i18n="@@itinerarios.agregar">+ Agregar itinerario</span>
+      }
     </button>
   </div>
 
   @if (mostrarFormulario) {
     <form class="formulario" (ngSubmit)="agregar()">
-      <input [(ngModel)]="formulario.id_reserva"  name="id_reserva"  placeholder="ID Reserva"  type="number" min="1" required />
-      <input [(ngModel)]="formulario.trayecto"    name="trayecto"    placeholder="Trayecto"     required />
-      <input [(ngModel)]="formulario.tramo"       name="tramo"       placeholder="Tramo"        required />
-      <input [(ngModel)]="formulario.id_vuelo"    name="id_vuelo"    placeholder="ID Vuelo"     type="number" />
+      <input [(ngModel)]="formulario.id_reserva"  name="id_reserva"  placeholder="ID Reserva"  i18n-placeholder="@@col.idReserva" type="number" min="1" required />
+      <input [(ngModel)]="formulario.trayecto"    name="trayecto"    placeholder="Trayecto"     i18n-placeholder="@@itinerarios.trayecto" required />
+      <input [(ngModel)]="formulario.tramo"       name="tramo"       placeholder="Tramo"        i18n-placeholder="@@itinerarios.tramo" required />
+      <input [(ngModel)]="formulario.id_vuelo"    name="id_vuelo"    placeholder="ID Vuelo"     i18n-placeholder="@@col.idVuelo" type="number" />
       <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.fecha_vuelo)" (ngModelChange)="formulario.fecha_vuelo = desdeEntradaFechaHora($event)" name="fecha_vuelo" required />
-      <button type="submit" class="btn-guardar">Guardar</button>
+      <button type="submit" class="btn-guardar" i18n="@@comun.guardar">Guardar</button>
     </form>
   }
 }
@@ -30,14 +34,14 @@
 <table>
   <thead>
     <tr>
-      <th>Reserva</th>
-      <th>Trayecto</th>
-      <th>Tramo</th>
-      <th>Vuelo</th>
-      <th>Ruta</th>
-      <th>Aerolínea</th>
-      <th>Fecha</th>
-      @if (esAdmin()) { <th>Acciones</th> }
+      <th i18n="@@itinerarios.reserva">Reserva</th>
+      <th i18n="@@itinerarios.trayecto">Trayecto</th>
+      <th i18n="@@itinerarios.tramo">Tramo</th>
+      <th i18n="@@itinerarios.vuelo">Vuelo</th>
+      <th i18n="@@itinerarios.ruta">Ruta</th>
+      <th i18n="@@col.aerolinea">Aerolínea</th>
+      <th i18n="@@col.fecha">Fecha</th>
+      @if (esAdmin()) { <th i18n="@@col.acciones">Acciones</th> }
     </tr>
   </thead>
   <tbody>
@@ -67,8 +71,8 @@
           <td>{{ i.fecha_vuelo }}</td>
           @if (esAdmin()) {
             <td class="acciones">
-              <button class="btn-editar" (click)="iniciarEdicion(i)">Editar</button>
-              <button class="btn-eliminar" (click)="eliminar(i)">Eliminar</button>
+              <button class="btn-editar" (click)="iniciarEdicion(i)" i18n="@@comun.editar">Editar</button>
+              <button class="btn-eliminar" (click)="eliminar(i)" i18n="@@comun.eliminar">Eliminar</button>
             </td>
           }
         </tr>

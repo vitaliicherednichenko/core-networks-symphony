@@ -1,17 +1,17 @@
 <nav class="top-nav">
-  <a routerLink="/">← Volver al inicio</a>
-  <a routerLink="/login">Iniciar sesión</a>
+  <a routerLink="/" i18n="@@nav.volverInicio">← Volver al inicio</a>
+  <a routerLink="/login" i18n="@@nav.iniciarSesion">Iniciar sesión</a>
 </nav>
 
 <mat-card class="login-card">
   <mat-card-header>
-    <mat-card-title>Registrarse</mat-card-title>
+    <mat-card-title i18n="@@nav.registrarse">Registrarse</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <form class="login-form" [formGroup]="signinForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="login-field" appearance="outline">
-        <mat-label>Correo electrónico</mat-label>
+        <mat-label i18n="@@form.correo">Correo electrónico</mat-label>
         <input
           type="email"
           matInput
@@ -21,14 +21,14 @@
           autocomplete="email"
         />
         @if (signinForm.controls.email.hasError('required')) {
-          <mat-error>El correo es <strong>obligatorio</strong></mat-error>
+          <mat-error i18n="@@form.correoRequerido">El correo es <strong>obligatorio</strong></mat-error>
         } @else if (signinForm.controls.email.hasError('email')) {
-          <mat-error>Introduce un correo válido</mat-error>
+          <mat-error i18n="@@form.correoInvalido">Introduce un correo válido</mat-error>
         }
       </mat-form-field>
 
       <mat-form-field class="login-field" appearance="outline">
-        <mat-label>Nombre</mat-label>
+        <mat-label i18n="@@form.nombre">Nombre</mat-label>
         <input
           type="text"
           matInput
@@ -38,12 +38,12 @@
           autocomplete="name"
         />
         @if (signinForm.controls.nombre.hasError('required')) {
-          <mat-error>El nombre es <strong>obligatorio</strong></mat-error>
+          <mat-error i18n="@@form.nombreRequerido">El nombre es <strong>obligatorio</strong></mat-error>
         }
       </mat-form-field>
 
       <mat-form-field class="login-field" appearance="outline">
-        <mat-label>Contraseña</mat-label>
+        <mat-label i18n="@@form.contrasena">Contraseña</mat-label>
         <input
           type="password"
           matInput
@@ -52,9 +52,9 @@
           autocomplete="new-password"
         />
         @if (signinForm.controls.password.hasError('required')) {
-          <mat-error>La contraseña es <strong>obligatoria</strong></mat-error>
+          <mat-error i18n="@@form.contrasenaRequerida">La contraseña es <strong>obligatoria</strong></mat-error>
         } @else if (signinForm.controls.password.hasError('minlength')) {
-          <mat-error>Debe tener al menos 6 caracteres</mat-error>
+          <mat-error i18n="@@form.min6">Debe tener al menos 6 caracteres</mat-error>
         }
       </mat-form-field>
 
@@ -67,7 +67,11 @@
 
       <div class="login-actions">
         <button mat-flat-button color="primary" type="submit" [disabled]="signinForm.invalid || submitting()">
-          {{ submitting() ? 'Guardando...' : 'Registrarse' }}
+          @if (submitting()) {
+            <span i18n="@@comun.guardando">Guardando...</span>
+          } @else {
+            <span i18n="@@nav.registrarse">Registrarse</span>
+          }
         </button>
       </div>
     </form>

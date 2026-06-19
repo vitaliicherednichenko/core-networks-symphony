@@ -1,18 +1,18 @@
 <nav class="page-nav">
-  <a routerLink="/">← Inicio</a>
+  <a routerLink="/" i18n="@@nav.inicio">← Inicio</a>
 </nav>
 
-<h2>Vuelos ({{ vuelosFiltrados().length }})</h2>
+<h2 i18n="@@home.vuelosCount">Vuelos ({{ vuelosFiltrados().length }})</h2>
 
 @if (error()) {
   <p class="error">{{ error() }}</p>
 }
 
 <form class="buscador" (ngSubmit)="$event.preventDefault()">
-  <input [ngModel]="filtroOrigen()"  (ngModelChange)="filtroOrigen.set($event)"  name="buscar-origen"  placeholder="Buscar por origen" />
-  <input [ngModel]="filtroDestino()" (ngModelChange)="filtroDestino.set($event)" name="buscar-destino" placeholder="Buscar por destino" />
+  <input [ngModel]="filtroOrigen()"  (ngModelChange)="filtroOrigen.set($event)"  name="buscar-origen"  placeholder="Buscar por origen"  i18n-placeholder="@@buscar.origen" />
+  <input [ngModel]="filtroDestino()" (ngModelChange)="filtroDestino.set($event)" name="buscar-destino" placeholder="Buscar por destino" i18n-placeholder="@@buscar.destino" />
   @if (filtroOrigen() || filtroDestino()) {
-    <button type="button" class="btn-cancelar" (click)="filtroOrigen.set(''); filtroDestino.set('')">Limpiar</button>
+    <button type="button" class="btn-cancelar" (click)="filtroOrigen.set(''); filtroDestino.set('')" i18n="@@comun.limpiar">Limpiar</button>
   }
 </form>
 
@@ -27,24 +27,28 @@
 @if (usuario()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
-      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar vuelo' }}
+      @if (mostrarFormulario) {
+        <span i18n="@@comun.cancelarForm">✕ Cancelar</span>
+      } @else {
+        <span i18n="@@vuelos.agregar">+ Agregar vuelo</span>
+      }
     </button>
   </div>
 
   @if (mostrarFormulario) {
     <form class="formulario" (ngSubmit)="agregarVuelo()">
-      <input [(ngModel)]="formulario.origen"       name="origen"       placeholder="Origen"      required />
-      <input [(ngModel)]="formulario.destino"      name="destino"      placeholder="Destino"     required />
+      <input [(ngModel)]="formulario.origen"       name="origen"       placeholder="Origen"      i18n-placeholder="@@col.origen" required />
+      <input [(ngModel)]="formulario.destino"      name="destino"      placeholder="Destino"     i18n-placeholder="@@col.destino" required />
       <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.hora_salida)"  (ngModelChange)="formulario.hora_salida = desdeEntradaFechaHora($event)"  name="hora_salida"  required />
       <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.hora_llegada)" (ngModelChange)="formulario.hora_llegada = desdeEntradaFechaHora($event)" name="hora_llegada" required />
-      <input [(ngModel)]="formulario.aerolinea"    name="aerolinea"    placeholder="Aerolínea"   required />
+      <input [(ngModel)]="formulario.aerolinea"    name="aerolinea"    placeholder="Aerolínea"   i18n-placeholder="@@col.aerolinea" required />
       @if (esAdmin()) {
-        <input [(ngModel)]="formulario.origen_lat"  name="origen_lat"  placeholder="Lat. Origen"  type="number" step="any" />
-        <input [(ngModel)]="formulario.origen_lon"  name="origen_lon"  placeholder="Lon. Origen"  type="number" step="any" />
-        <input [(ngModel)]="formulario.destino_lat" name="destino_lat" placeholder="Lat. Destino" type="number" step="any" />
-        <input [(ngModel)]="formulario.destino_lon" name="destino_lon" placeholder="Lon. Destino" type="number" step="any" />
+        <input [(ngModel)]="formulario.origen_lat"  name="origen_lat"  placeholder="Lat. Origen"  i18n-placeholder="@@vuelos.latOrigen" type="number" step="any" />
+        <input [(ngModel)]="formulario.origen_lon"  name="origen_lon"  placeholder="Lon. Origen"  i18n-placeholder="@@vuelos.lonOrigen" type="number" step="any" />
+        <input [(ngModel)]="formulario.destino_lat" name="destino_lat" placeholder="Lat. Destino" i18n-placeholder="@@vuelos.latDestino" type="number" step="any" />
+        <input [(ngModel)]="formulario.destino_lon" name="destino_lon" placeholder="Lon. Destino" i18n-placeholder="@@vuelos.lonDestino" type="number" step="any" />
       }
-      <button type="submit" class="btn-guardar">Guardar</button>
+      <button type="submit" class="btn-guardar" i18n="@@comun.guardar">Guardar</button>
     </form>
   }
 }
@@ -52,23 +56,23 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Origen</th>
-      <th>Temp. Origen (°C)</th>
+      <th i18n="@@col.id">ID</th>
+      <th i18n="@@col.origen">Origen</th>
+      <th i18n="@@col.tempOrigen">Temp. Origen (°C)</th>
       @if (esAdmin()) {
-        <th>Lat. Origen</th>
-        <th>Lon. Origen</th>
+        <th i18n="@@vuelos.latOrigen">Lat. Origen</th>
+        <th i18n="@@vuelos.lonOrigen">Lon. Origen</th>
       }
-      <th>Destino</th>
-      <th>Temp. Destino (°C)</th>
+      <th i18n="@@col.destino">Destino</th>
+      <th i18n="@@col.tempDestino">Temp. Destino (°C)</th>
       @if (esAdmin()) {
-        <th>Lat. Destino</th>
-        <th>Lon. Destino</th>
+        <th i18n="@@vuelos.latDestino">Lat. Destino</th>
+        <th i18n="@@vuelos.lonDestino">Lon. Destino</th>
       }
-      <th>Salida</th>
-      <th>Llegada</th>
-      <th>Aerolínea</th>
-      @if (usuario()) { <th>Acciones</th> }
+      <th i18n="@@col.salida">Salida</th>
+      <th i18n="@@col.llegada">Llegada</th>
+      <th i18n="@@col.aerolinea">Aerolínea</th>
+      @if (usuario()) { <th i18n="@@col.acciones">Acciones</th> }
     </tr>
   </thead>
   <tbody>
@@ -116,8 +120,8 @@
           <td>{{ v.aerolinea }}</td>
           @if (usuario()) {
             <td class="acciones">
-              <button class="btn-editar"   (click)="iniciarEdicion(v)">Editar</button>
-              <button class="btn-eliminar" (click)="eliminarVuelo(v.id)">Eliminar</button>
+              <button class="btn-editar"   (click)="iniciarEdicion(v)" i18n="@@comun.editar">Editar</button>
+              <button class="btn-eliminar" (click)="eliminarVuelo(v.id)" i18n="@@comun.eliminar">Eliminar</button>
             </td>
           }
         </tr>
@@ -127,5 +131,5 @@
 </table>
 
 @if (vuelos().length && !vuelosFiltrados().length) {
-  <p>No hay vuelos que coincidan con la búsqueda.</p>
+  <p i18n="@@vuelos.sinResultados">No hay vuelos que coincidan con la búsqueda.</p>
 }

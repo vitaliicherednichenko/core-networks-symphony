@@ -1,21 +1,22 @@
 <main>
   <nav class="top-nav">
     @if (usuario()) {
-      @if (!esAdmin()) { <a routerLink="/vuelos">Mis Vuelos</a> }
-      <a routerLink="/perfil">Mi perfil</a>
-      <a (click)="logout()">Cerrar sesión</a>
-      <p>Hola {{ usuario()!.nombre }}!!!</p>
+      @if (!esAdmin()) { <a routerLink="/vuelos" i18n="@@nav.misVuelos">Mis Vuelos</a> }
+      <a routerLink="/perfil" i18n="@@nav.miPerfil">Mi perfil</a>
+      <a (click)="logout()" i18n="@@nav.cerrarSesion">Cerrar sesión</a>
+      <p i18n="@@nav.saludo">Hola {{ usuario()!.nombre }}!!!</p>
       <a routerLink="/perfil" class="top-nav-avatar-wrap">
         @if (usuario()!.avatar) {
-          <img class="top-nav-avatar-img" [src]="usuario()!.avatar" alt="Avatar" />
+          <img class="top-nav-avatar-img" [src]="usuario()!.avatar" alt="Avatar" i18n-alt="@@nav.avatarAlt" />
         } @else {
           <div class="top-nav-avatar" [style.background]="colorAvatar()">{{ iniciales() }}</div>
         }
       </a>
     } @else {
-      <a routerLink="/login">Iniciar sesión</a>
-      <a routerLink="/signin">Registrarse</a>
+      <a routerLink="/login" i18n="@@nav.iniciarSesion">Iniciar sesión</a>
+      <a routerLink="/signin" i18n="@@nav.registrarse">Registrarse</a>
     }
+    <a class="lang-switch" [href]="otraLocaleHref()" i18n="@@nav.cambiarIdioma">{{ otraLocaleEtiqueta }}</a>
   </nav>
 
   @if (isHome()) {
@@ -23,42 +24,42 @@
 
     <nav class="secciones">
       @if (esAdmin()) {
-        <a routerLink="/vuelos">Vuelos</a>
-        <a routerLink="/pasajeros">Pasajeros</a>
-        <a routerLink="/reservas">Reservas</a>
-        <a routerLink="/boletos">Boletos</a>
-        <a routerLink="/detalles-viajeros">Detalles de viajeros</a>
-        <a routerLink="/itinerarios">Itinerarios</a>
-        <a routerLink="/listado-pasajeros-vuelos">Listado de pasajeros por vuelo</a>
-        <a routerLink="/tarjetas-embarque">Tarjetas de embarque</a>
-        <a routerLink="/usuarios">Usuarios</a>
+        <a routerLink="/vuelos" i18n="@@nav.vuelos">Vuelos</a>
+        <a routerLink="/pasajeros" i18n="@@nav.pasajeros">Pasajeros</a>
+        <a routerLink="/reservas" i18n="@@nav.reservas">Reservas</a>
+        <a routerLink="/boletos" i18n="@@nav.boletos">Boletos</a>
+        <a routerLink="/detalles-viajeros" i18n="@@nav.detallesViajeros">Detalles de viajeros</a>
+        <a routerLink="/itinerarios" i18n="@@nav.itinerarios">Itinerarios</a>
+        <a routerLink="/listado-pasajeros-vuelos" i18n="@@nav.listado">Listado de pasajeros por vuelo</a>
+        <a routerLink="/tarjetas-embarque" i18n="@@nav.tarjetas">Tarjetas de embarque</a>
+        <a routerLink="/usuarios" i18n="@@nav.usuarios">Usuarios</a>
       }
     </nav>
 
     @if (!esAdmin()) {
-      <h2>Vuelos ({{ vuelosFiltrados().length }})</h2>
+      <h2 i18n="@@home.vuelosCount">Vuelos ({{ vuelosFiltrados().length }})</h2>
 
       @if (vuelosError()) { <p class="error">{{ vuelosError() }}</p> }
 
       <form class="buscador" (ngSubmit)="$event.preventDefault()">
-        <input [ngModel]="filtroOrigen()"  (ngModelChange)="filtroOrigen.set($event)"  name="buscar-origen"  placeholder="Buscar por origen" />
-        <input [ngModel]="filtroDestino()" (ngModelChange)="filtroDestino.set($event)" name="buscar-destino" placeholder="Buscar por destino" />
+        <input [ngModel]="filtroOrigen()"  (ngModelChange)="filtroOrigen.set($event)"  name="buscar-origen"  placeholder="Buscar por origen"  i18n-placeholder="@@buscar.origen" />
+        <input [ngModel]="filtroDestino()" (ngModelChange)="filtroDestino.set($event)" name="buscar-destino" placeholder="Buscar por destino" i18n-placeholder="@@buscar.destino" />
         @if (filtroOrigen() || filtroDestino()) {
-          <button type="button" class="btn-cancelar" (click)="filtroOrigen.set(''); filtroDestino.set('')">Limpiar</button>
+          <button type="button" class="btn-cancelar" (click)="filtroOrigen.set(''); filtroDestino.set('')" i18n="@@comun.limpiar">Limpiar</button>
         }
       </form>
 
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Origen</th>
-            <th>Temp. Origen (°C)</th>
-            <th>Destino</th>
-            <th>Temp. Destino (°C)</th>
-            <th>Salida</th>
-            <th>Llegada</th>
-            <th>Aerolínea</th>
+            <th i18n="@@col.id">ID</th>
+            <th i18n="@@col.origen">Origen</th>
+            <th i18n="@@col.tempOrigen">Temp. Origen (°C)</th>
+            <th i18n="@@col.destino">Destino</th>
+            <th i18n="@@col.tempDestino">Temp. Destino (°C)</th>
+            <th i18n="@@col.salida">Salida</th>
+            <th i18n="@@col.llegada">Llegada</th>
+            <th i18n="@@col.aerolinea">Aerolínea</th>
           </tr>
         </thead>
         <tbody>

@@ -1,8 +1,8 @@
 <nav class="page-nav">
-  <a routerLink="/">← Inicio</a>
+  <a routerLink="/" i18n="@@nav.inicio">← Inicio</a>
 </nav>
 
-<h2>Tarjetas de Embarque ({{ tarjetas().length }})</h2>
+<h2 i18n="@@header.tarjetas">Tarjetas de Embarque ({{ tarjetas().length }})</h2>
 
 @if (error()) {
   <p class="error">{{ error() }}</p>
@@ -11,21 +11,25 @@
 @if (esAdmin()) {
   <div class="crud-toolbar">
     <button class="btn-agregar" (click)="mostrarFormulario = !mostrarFormulario">
-      {{ mostrarFormulario ? '✕ Cancelar' : '+ Agregar tarjeta' }}
+      @if (mostrarFormulario) {
+        <span i18n="@@comun.cancelarForm">✕ Cancelar</span>
+      } @else {
+        <span i18n="@@tarjetas.agregar">+ Agregar tarjeta</span>
+      }
     </button>
   </div>
 
   @if (mostrarFormulario) {
     <form class="formulario" (ngSubmit)="agregar()">
-      <input [(ngModel)]="formulario.id_reserva"   name="id_reserva"   placeholder="ID Reserva"  type="number" min="1" required />
-      <input [(ngModel)]="formulario.id_pasajero"  name="id_pasajero"  placeholder="ID Pasajero" type="number" min="1" required />
-      <input [(ngModel)]="formulario.embarque"     name="embarque"     placeholder="Embarque"    required />
-      <input [(ngModel)]="formulario.nro_vuelo"    name="nro_vuelo"    placeholder="Nº Vuelo"    required />
+      <input [(ngModel)]="formulario.id_reserva"   name="id_reserva"   placeholder="ID Reserva"  i18n-placeholder="@@col.idReserva" type="number" min="1" required />
+      <input [(ngModel)]="formulario.id_pasajero"  name="id_pasajero"  placeholder="ID Pasajero" i18n-placeholder="@@col.idPasajero" type="number" min="1" required />
+      <input [(ngModel)]="formulario.embarque"     name="embarque"     placeholder="Embarque"    i18n-placeholder="@@tarjetas.embarque" required />
+      <input [(ngModel)]="formulario.nro_vuelo"    name="nro_vuelo"    placeholder="Nº Vuelo"    i18n-placeholder="@@tarjetas.nroVueloMayus" required />
       <input type="datetime-local" [ngModel]="aEntradaFechaHora(formulario.fecha_vuelo)" (ngModelChange)="formulario.fecha_vuelo = desdeEntradaFechaHora($event)" name="fecha_vuelo" required />
-      <input [(ngModel)]="formulario.clase"        name="clase"        placeholder="Clase"       required />
-      <input [(ngModel)]="formulario.asiento"      name="asiento"      placeholder="Asiento"     required />
-      <input [(ngModel)]="formulario.sala_embarque" name="sala_embarque" placeholder="Sala"      required />
-      <button type="submit" class="btn-guardar">Guardar</button>
+      <input [(ngModel)]="formulario.clase"        name="clase"        placeholder="Clase"       i18n-placeholder="@@col.clase" required />
+      <input [(ngModel)]="formulario.asiento"      name="asiento"      placeholder="Asiento"     i18n-placeholder="@@tarjetas.asiento" required />
+      <input [(ngModel)]="formulario.sala_embarque" name="sala_embarque" placeholder="Sala"      i18n-placeholder="@@tarjetas.sala" required />
+      <button type="submit" class="btn-guardar" i18n="@@comun.guardar">Guardar</button>
     </form>
   }
 }
@@ -33,17 +37,17 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Pasajero</th>
-      <th>ID Reserva</th>
-      <th>ID Pasajero</th>
-      <th>Nº vuelo</th>
-      <th>Fecha</th>
-      <th>Clase</th>
-      <th>Asiento</th>
-      <th>Embarque</th>
-      <th>Sala</th>
-      @if (esAdmin()) { <th>Acciones</th> }
+      <th i18n="@@col.id">ID</th>
+      <th i18n="@@col.pasajero">Pasajero</th>
+      <th i18n="@@col.idReserva">ID Reserva</th>
+      <th i18n="@@col.idPasajero">ID Pasajero</th>
+      <th i18n="@@tarjetas.nroVuelo">Nº vuelo</th>
+      <th i18n="@@col.fecha">Fecha</th>
+      <th i18n="@@col.clase">Clase</th>
+      <th i18n="@@tarjetas.asiento">Asiento</th>
+      <th i18n="@@tarjetas.embarque">Embarque</th>
+      <th i18n="@@tarjetas.sala">Sala</th>
+      @if (esAdmin()) { <th i18n="@@col.acciones">Acciones</th> }
     </tr>
   </thead>
   <tbody>
@@ -79,8 +83,8 @@
           <td>{{ t.sala_embarque }}</td>
           @if (esAdmin()) {
             <td class="acciones">
-              <button class="btn-editar" (click)="iniciarEdicion(t)">Editar</button>
-              <button class="btn-eliminar" (click)="eliminar(t.id_tarjeta)">Eliminar</button>
+              <button class="btn-editar" (click)="iniciarEdicion(t)" i18n="@@comun.editar">Editar</button>
+              <button class="btn-eliminar" (click)="eliminar(t.id_tarjeta)" i18n="@@comun.eliminar">Eliminar</button>
             </td>
           }
         </tr>
