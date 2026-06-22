@@ -21,3 +21,5 @@
 
 /public/uploads/avatars/*
 !/public/uploads/avatars/.gitkeep
+
+/CLAUDE.md
