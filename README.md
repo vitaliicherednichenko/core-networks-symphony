@@ -6,6 +6,8 @@ pasajeros, boletos, tarjetas de embarque, itinerarios y usuarios, con control
 de acceso por roles (admin / usuario), internacionalización (ES/EN) y
 temperatura en tiempo real de origen/destino para cada vuelo (vía Open-Meteo).
 
+<img width="1179" height="774" alt="core-networks-symphony" src="https://github.com/user-attachments/assets/f97852bc-1ad8-4aa5-9c3b-90c2f817225f" />
+
 ## Tecnologías
 
 ### Backend
